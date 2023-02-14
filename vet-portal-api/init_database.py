@@ -1,6 +1,7 @@
 from config import app, db
-from models import Owner, Pet
+from models import Owner, Pet, Vet, Appointment
 from sqlalchemy.exc import OperationalError
+from datetime import datetime
 
 OWNERS_PETS = [
     {
@@ -10,13 +11,29 @@ OWNERS_PETS = [
         "pets": [
             {
                 "name": "Thor",
-                "animal_type": "cat",
-                "breed": "flamepoint siamese"
+                "species": "cat",
+                "breed": "flamepoint siamese",
+                "appointments": [
+                    {
+                        "date": "2022-01-07 08:00:00",
+                        "vet": {
+                            "name": "Dr. Rodriguez"
+                        }
+                    },
+                ]
             },
             {
                 "name": "Tom",
-                "animal_type": "cat",
-                "breed": "black"
+                "species": "cat",
+                "breed": "black",
+                "appointments": [
+                    {
+                        "date": "2022-02-08 12:00:00",
+                        "vet": {
+                            "name": "Dr. Bob"
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -27,18 +44,28 @@ OWNERS_PETS = [
         "pets": [
             {
                 "name": "Guiness",
-                "animal_type": "cat",
-                "breed": "siamese"
+                "species": "cat",
+                "breed": "siamese",
+                "appointments": []
             },
             {
                 "name": "Rosie",
-                "animal_type": "cat",
-                "breed": "siamese"
+                "species": "cat",
+                "breed": "siamese",
+                "appointments": [
+                    {
+                        "date": "2022-01-07 08:00:00",
+                        "vet": {
+                            "name": "Dr. Susan"
+                        }
+                    }
+                ]
             },
             {
                 "name": "Otis",
-                "animal_type": "cat",
-                "breed": "black"
+                "species": "cat",
+                "breed": "black",
+                "appointments": []
             }
         ]
     },
@@ -49,13 +76,15 @@ OWNERS_PETS = [
         "pets": [
             {
                 "name": "Mikey",
-                "animal_type": "dog",
-                "breed": "good"
+                "species": "dog",
+                "breed": "good",
+                "appointments": []
             },
             {
                 "name": "Sam",
-                "animal_type": "dog",
-                "breed": "golden retriever"
+                "species": "dog",
+                "breed": "golden retriever",
+                "appointments": []
             }
         ]
     },
@@ -74,24 +103,36 @@ def create_database(db):
     for data in OWNERS_PETS:
         new_owner = Owner(fname=data.get("fname"), lname=data.get("lname"), email=data.get("email"))
         for pet in data.get("pets", []):
-            new_owner.pets.append(
-                Pet(
+            new_pet = Pet(
                     name=pet["name"],
-                    animal_type=pet["animal_type"],
+                    species=pet["species"],
                     breed=pet["breed"]
                 )
-            )
+            for appointment in pet["appointments"]:
+                new_pet.appointments.append(
+                    Appointment(
+                        date=appointment["date"],
+                        vet = Vet(
+                            name=appointment["vet"]["name"]
+                        )
+                    )
+                )
+            new_owner.pets.append(new_pet)
         db.session.add(new_owner)
     db.session.commit()
     print("Created new database")
 
-def update_database(db, existing_owners, existing_pets):
+def update_database(db, existing_owners, existing_pets, existing_vets, existing_appointments):
     db.drop_all()
     db.create_all()
     for owner in existing_owners:
         db.session.merge(owner)
     for pet in existing_pets:
         db.session.merge(pet)
+    for vet in existing_vets:
+        db.session.merge(vet)
+    for appointment in existing_appointments:
+        db.session.merge(appointment)
     db.session.commit()
     print("Updated existing database")
 
@@ -99,11 +140,13 @@ def update_database(db, existing_owners, existing_pets):
 with app.app_context():
     existing_owners = get_data_from_table(Owner)
     existing_pets = get_data_from_table(Pet)
+    existing_vets = get_data_from_table(Vet)
+    existing_appointments = get_data_from_table(Appointment)
 
     # create_database(db)
 
     if not existing_owners:
         create_database(db)
     else:
-        update_database(db, existing_owners, existing_pets)
+        update_database(db, existing_owners, existing_pets, existing_vets, existing_appointments)
     

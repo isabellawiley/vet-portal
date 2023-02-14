@@ -35,6 +35,20 @@ components:
       required: true
       schema:
         type: "string"
+    vet_id:
+      name: "vet_id"
+      description: "ID of the vet"
+      in: path
+      required: true
+      schema:
+        type: "string"
+    appointment_id:
+      name: "appointment_id"
+      description: "ID of the appointment"
+      in: path
+      required: true
+      schema:
+        type: "string"
 
 paths:
   /owners:
@@ -126,7 +140,7 @@ paths:
                   type: "string"
                 name:
                   type: "string"
-                animal_type:
+                species:
                   type: "string"
                 breed:
                   type: "string"
@@ -163,7 +177,7 @@ paths:
               properties:
                 name:
                   type: "string"
-                animal_type:
+                species:
                   type: "string"
                 breed:
                   type: "string"
@@ -177,4 +191,148 @@ paths:
       responses:
         "204":
           description: "Successfully deleted pet"
-                
+  /vets:
+    get:
+      operationId: "vets.read_all"
+      tags:
+        - Vets
+      summary: "Read a list of vets"
+      responses:
+        "200":
+          description: "Successfully read vets list"
+    post:
+      operationId: "vets.create"
+      tags:
+        - Vets
+      summary: "Create a vet"
+      requestBody:
+        description: "Vet to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "vet"
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+      responses:
+        "201":
+          description: "Successfully created vet"
+  /vets/{vet_id}:
+    get:
+      operationId: "vets.read_one"
+      tags:
+        - Vets
+      summary: "Read one vet"
+      parameters:
+        - $ref: "#/components/parameters/vet_id"
+      responses:
+        "200":
+          description: "Successfully read vet"
+    put:
+      tags:
+        - Vets
+      operationId: "vets.update"
+      summary: "Update a vet"
+      parameters:
+        - $ref: "#/components/parameters/vet_id"
+      responses:
+        "200":
+          description: "Successfully updated vet"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "vet"
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+    delete:
+      tags:
+        - Vets
+      operationId: "vets.delete"
+      summary: "Delete a vet"
+      parameters:
+        - $ref: "#/components/parameters/vet_id"
+      responses:
+        "204":
+          description: "Successfully deleted vet"
+  /appointments:
+    get:
+      operationId: "appointments.read_all"
+      tags:
+        - Appointments
+      summary: "Read the list of appointments"
+      responses:
+        "200":
+          description: "Successfully read appointments list"
+    post:
+      operationId: "appointments.create"
+      tags:
+        - Appointments
+      summary: "Create an appointment"
+      requestBody:
+        description: "Appointment to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "appointment"
+              type: "object"
+              properties:
+                vet_id:
+                  type: "string"
+                pet_id:
+                  type: "string"
+                date:
+                  type: "string"
+      responses:
+        "201":
+          description: "Successfully created an appointment"
+  /appointments/{appointment_id}:
+    get:
+      operationId: "appointments.read_one"
+      tags:
+        - Appointments
+      summary: "Read one appointment"
+      parameters:
+        - $ref: "#/components/parameters/appointment_id"
+      responses:
+        "200":
+          description: "Successfully read one appointment"
+    put:
+      operationId: "appointments.update"
+      tags:
+        - Appointments
+      summary: "Update an appointment"
+      parameters:
+        - $ref: "#/components/parameters/appointment_id"
+      responses:
+        "200":
+          description: "Successfully updated appointment"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "appointment"
+              type: "object"
+              properties:
+                vet_id:
+                  type: "string"
+                pet_id:
+                  type: "string"
+                date:
+                  type: "string"
+    delete:
+      operationId: "appointments.delete"
+      tags:
+        - Appointments
+      summary: "Delete an appointment"
+      parameters:
+        - $ref: "#/components/parameters/appointment_id"
+      responses:
+        "204":
+          description: "Successfully deleted appointment"
+      

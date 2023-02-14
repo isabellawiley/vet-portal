@@ -20,7 +20,7 @@ def update(pet_id, pet):
     if existing_pet:
         update_pet = pet_schema.load(pet, session=db.session)
         existing_pet.name = update_pet.name
-        existing_pet.animal_type = update_pet.animal_type
+        existing_pet.species = update_pet.species
         existing_pet.breed = update_pet.breed
         db.session.merge(existing_pet)
         db.session.commit()

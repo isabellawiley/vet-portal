@@ -1,0 +1,180 @@
+openapi: 3.0.0
+info:
+  title: "RP Flask REST API"
+  description: "An API for vet appointments"
+  version: "1.0.0"
+
+servers:
+  - url: "/api"
+
+components:
+  schemas:
+    Owner:
+      type: "object"
+      required:
+        - "lname"
+      properties:
+        fname:
+          type: "string"
+        lname:
+          type: "string"
+        email:
+          type: "string"
+  parameters:
+    owner_id:
+      name: "owner_id"
+      description: "ID of the owner to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    pet_id:
+      name: "pet_id"
+      description: "ID of the pet"
+      in: path
+      required: true
+      schema:
+        type: "string"
+
+paths:
+  /owners:
+    get:
+      operationId: "owners.read_all"
+      tags:
+        - Owners
+      summary: "Read list of owners"
+      responses:
+        "200":
+          description: "Successfully read owners list"
+    post:
+      operationId: "owners.create"
+      tags:
+        - Owners
+      summary: "Create an owner"
+      requestBody:
+        description: "Owner to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "owner"
+              $ref: "#/components/schemas/Owner"
+      responses:
+        "201":
+          description: "Successfully create owner"
+  /owners/{owner_id}:
+    get:
+        operationId: "owners.read_one"
+        tags:
+          - "Owners"
+        summary: "Read one owner"
+        parameters:
+          - $ref: "#/components/parameters/owner_id"
+        responses:
+          "200":
+            description: "Successfully read owner"
+    put:
+      tags:
+        - Owners
+      operationId: "owners.update"
+      summary: "Update owner"
+      parameters:
+        - $ref: "#/components/parameters/owner_id"
+      responses:
+        "200":
+          description: "Successfully updated owner"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "owner"
+              $ref: "#/components/schemas/Owner"
+    delete:
+      tags:
+        - Owners
+      operationId: "owners.delete"
+      summary: "Delete an owner"
+      parameters:
+        - $ref: "#/components/parameters/owner_id"
+      responses:
+        "204":
+          description: "Successfully delete owner"
+  /pets:
+    get:
+      operationId: "pets.read_all"
+      tags:
+        - Pets
+      summary: "Read list of pets"
+      responses:
+        "200":
+          description: "Successfully read pets list"
+    post:
+      operationId: "pets.create"
+      tags:
+        - Pets
+      summary: "Create a pet associated with an owner"
+      requestBody:
+        description: "Pet to create"
+        required: True
+        content:
+          application/json:
+            schema:
+              x-body-name: "pet"
+              type: "object"
+              properties:
+                owner_id:
+                  type: "string"
+                name:
+                  type: "string"
+                animal_type:
+                  type: "string"
+                breed:
+                  type: "string"
+      responses:
+        "201":
+          description: "Successfully created a pet"
+  /pets/{pet_id}:
+    get:
+      operationId: "pets.read_one"
+      tags:
+        - Pets
+      summary: "Read one pet"
+      parameters:
+        - $ref: "#/components/parameters/pet_id"
+      responses:
+        "200":
+          description: "Successfully read one pet"
+    put:
+      tags:
+        - Pets
+      operationId: "pets.update"
+      summary: "Update a pet"
+      parameters:
+        - $ref: "#/components/parameters/pet_id"
+      responses:
+        "200":
+          description: "Successfully updated pet"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "pet"
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                animal_type:
+                  type: "string"
+                breed:
+                  type: "string"
+    delete:
+      tags:
+        - Pets
+      operationId: "pets.delete"
+      summary: "Delete a pet"
+      parameters:
+        - $ref: "#/components/parameters/pet_id"
+      responses:
+        "204":
+          description: "Successfully deleted pet"
+                

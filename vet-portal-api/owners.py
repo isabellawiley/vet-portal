@@ -1,6 +1,6 @@
 from flask import make_response, abort
 from config import db
-from models import Owner, owner_schema, owners_schema
+from models import Owner, owner_schema, owners_schema, pets_schema, appointments_schema
 
 def read_all():
     owners = Owner.query.all()
@@ -45,3 +45,19 @@ def delete(owner_id):
 
     else:
         abort(404, f"Owner with ID {owner_id} not found")
+
+def read_pets(owner_id):
+    owner = Owner.query.get(owner_id)
+    owner_obj = owner_schema.dump(owner)
+    return owner_obj["pets"]
+
+def read_appointments(owner_id):
+    owner = Owner.query.get(owner_id)
+    owner_obj = owner_schema.dump(owner)
+    pets = owner_obj["pets"]
+    appointments = []
+    for pet in pets:
+        for appt in pet["appointments"]:
+            appointments.append(appt)
+
+    return appointments

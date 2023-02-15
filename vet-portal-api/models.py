@@ -4,7 +4,7 @@ from marshmallow_sqlalchemy import fields
 class Appointment(db.Model):
     __tablename__ = "appointment"
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String)
+    date = db.Column(db.DateTime)
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"))
     vet_id = db.Column(db.Integer, db.ForeignKey("vet.id"))
 

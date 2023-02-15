@@ -111,7 +111,7 @@ def create_database(db):
             for appointment in pet["appointments"]:
                 new_pet.appointments.append(
                     Appointment(
-                        date=appointment["date"],
+                        date=datetime.strptime(appointment["date"], "%Y-%m-%d %H:%M:%S"),
                         vet = Vet(
                             name=appointment["vet"]["name"]
                         )

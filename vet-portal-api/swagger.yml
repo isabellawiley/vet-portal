@@ -113,6 +113,28 @@ paths:
       responses:
         "204":
           description: "Successfully delete owner"
+  /owners/{owner_id}/pets:
+    get:
+        operationId: "owners.read_pets"
+        tags:
+          - "Owners"
+        summary: "Read all owner pets"
+        parameters:
+          - $ref: "#/components/parameters/owner_id"
+        responses:
+          "200":
+            description: "Successfully read all owner pets"
+  /owners/{owner_id}/appointments:
+    get:
+        operationId: "owners.read_appointments"
+        tags:
+          - "Owners"
+        summary: "Read all owner appointments"
+        parameters:
+          - $ref: "#/components/parameters/owner_id"
+        responses:
+          "200":
+            description: "Successfully read all owner appointments"
   /pets:
     get:
       operationId: "pets.read_all"

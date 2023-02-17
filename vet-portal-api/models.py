@@ -22,6 +22,8 @@ class Pet(db.Model):
     name = db.Column(db.String)
     species = db.Column(db.String)
     breed = db.Column(db.String)
+    image = db.Column(db.String)
+    age = db.Column(db.Integer)
     appointments = db.relationship(
         Appointment,
         backref="pet",
@@ -44,7 +46,8 @@ class Owner(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(32))
     lname = db.Column(db.String(32))
-    email = db.Column(db.String(32))
+    email = db.Column(db.String(32), nullable=False)
+    password = db.Column(db.String(32), nullable=False)
     pets = db.relationship(
         Pet,
         backref="owner",
@@ -65,6 +68,8 @@ class Vet(db.Model):
     __tablename__ = "vet"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(32), unique=True)
+    image = db.Column(db.String)
+    bio = db.Column(db.String)
     appointments = db.relationship(
         Appointment,
         backref="vet",

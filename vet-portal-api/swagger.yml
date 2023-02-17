@@ -20,10 +20,19 @@ components:
           type: "string"
         email:
           type: "string"
+        password:
+          type: "string"
   parameters:
     owner_id:
       name: "owner_id"
       description: "ID of the owner to get"
+      in: path
+      required: True
+      schema:
+        type: "string"
+    password:
+      name: "password"
+      description: "Password the owner"
       in: path
       required: True
       schema:
@@ -51,6 +60,17 @@ components:
         type: "string"
 
 paths:
+  /login:
+    get:
+      operationId: "owners.login"
+      tags:
+          - "Owners"
+      summary: "Login owner"
+      parameters:
+        - $ref: "#/components/parameters/password"
+      responses:
+        "200":
+          description: "Successfully logged in"
   /owners:
     get:
       operationId: "owners.read_all"
@@ -281,6 +301,17 @@ paths:
       responses:
         "204":
           description: "Successfully deleted vet"
+  /vets/{vet_id}/appointments:
+    get:
+      operationId: "vets.read_appointment_data"
+      tags:
+        - Vets
+      summary: "Read appointments of one vet"
+      parameters:
+        - $ref: "#/components/parameters/vet_id"
+      responses:
+        "200":
+          description: "Successfully read appointments of vet"
   /appointments:
     get:
       operationId: "appointments.read_all"

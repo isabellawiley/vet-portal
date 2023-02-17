@@ -22,6 +22,8 @@ def update(pet_id, pet):
         existing_pet.name = update_pet.name
         existing_pet.species = update_pet.species
         existing_pet.breed = update_pet.breed
+        existing_pet.image = update_pet.image
+        existing_pet.age = update_pet.age
         db.session.merge(existing_pet)
         db.session.commit()
         return pet_schema.dump(existing_pet), 201

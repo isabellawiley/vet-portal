@@ -2,6 +2,10 @@ import pathlib
 import connexion
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+import json
+from flask import request, jsonify
+from datetime import datetime, timedelta, timezone
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
 
 basedir = pathlib.Path(__file__).parent.resolve()
 connex_app = connexion.App(__name__, specification_dir=basedir)
@@ -9,6 +13,9 @@ connex_app = connexion.App(__name__, specification_dir=basedir)
 app = connex_app.app
 app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{basedir / 'owners.db'}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["JWT_SECRET_KEY"] = "please-remember-to-change-me"
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
+jwt = JWTManager(app)
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)

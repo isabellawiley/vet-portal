@@ -8,16 +8,21 @@ OWNERS_PETS = [
         "fname": "Isabella",
         "lname": "Wiley",
         "email": "iw@gmail.com",
+        "password": "pass123",
         "pets": [
             {
                 "name": "Thor",
                 "species": "cat",
                 "breed": "flamepoint siamese",
+                "image": "",
+                "age": 3,
                 "appointments": [
                     {
                         "date": "2022-01-07 08:00:00",
                         "vet": {
-                            "name": "Dr. Rodriguez"
+                            "name": "Dr. Rodriguez",
+                            "image": "",
+                            "bio": "i am a vet"
                         }
                     },
                 ]
@@ -26,11 +31,15 @@ OWNERS_PETS = [
                 "name": "Tom",
                 "species": "cat",
                 "breed": "black",
+                "image": "",
+                "age": 3,
                 "appointments": [
                     {
                         "date": "2022-02-08 12:00:00",
                         "vet": {
-                            "name": "Dr. Bob"
+                            "name": "Dr. Bob",
+                            "image": "",
+                            "bio": "i am a vet too"
                         }
                     }
                 ]
@@ -41,22 +50,29 @@ OWNERS_PETS = [
         "fname": "Aidan",
         "lname": "Mcbride",
         "email": "am@gmail.com",
+        "password": "pass123",
         "pets": [
             {
                 "name": "Guiness",
                 "species": "cat",
                 "breed": "siamese",
+                "image": "",
+                "age": 14,
                 "appointments": []
             },
             {
                 "name": "Rosie",
                 "species": "cat",
                 "breed": "siamese",
+                "image": "",
+                "age": 14,
                 "appointments": [
                     {
                         "date": "2022-01-07 08:00:00",
                         "vet": {
-                            "name": "Dr. Susan"
+                            "name": "Dr. Susan",
+                            "image": "",
+                            "bio": "i am a vet as well"
                         }
                     }
                 ]
@@ -65,6 +81,8 @@ OWNERS_PETS = [
                 "name": "Otis",
                 "species": "cat",
                 "breed": "black",
+                "image": "",
+                "age": 1,
                 "appointments": []
             }
         ]
@@ -73,17 +91,22 @@ OWNERS_PETS = [
         "fname": "Kristin",
         "lname": "McAtee",
         "email": "km@gmail.com",
+        "password": "pass123",
         "pets": [
             {
                 "name": "Mikey",
                 "species": "dog",
                 "breed": "good",
+                "image": "",
+                "age": 5,
                 "appointments": []
             },
             {
                 "name": "Sam",
                 "species": "dog",
                 "breed": "golden retriever",
+                "image": "",
+                "age": 13,
                 "appointments": []
             }
         ]
@@ -101,19 +124,23 @@ def get_data_from_table(model):
 def create_database(db):
     db.create_all()
     for data in OWNERS_PETS:
-        new_owner = Owner(fname=data.get("fname"), lname=data.get("lname"), email=data.get("email"))
+        new_owner = Owner(fname=data.get("fname"), lname=data.get("lname"), email=data.get("email"), password=data.get("password"))
         for pet in data.get("pets", []):
             new_pet = Pet(
                     name=pet["name"],
                     species=pet["species"],
-                    breed=pet["breed"]
+                    breed=pet["breed"],
+                    image = pet["image"],
+                    age = pet["age"]
                 )
             for appointment in pet["appointments"]:
                 new_pet.appointments.append(
                     Appointment(
                         date=datetime.strptime(appointment["date"], "%Y-%m-%d %H:%M:%S"),
                         vet = Vet(
-                            name=appointment["vet"]["name"]
+                            name=appointment["vet"]["name"],
+                            image = appointment["vet"]["image"],
+                            bio = appointment["vet"]["bio"]
                         )
                     )
                 )

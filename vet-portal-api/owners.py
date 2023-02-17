@@ -29,6 +29,7 @@ def update(owner_id, owner):
         existing_owner.fname = update_owner.fname
         existing_owner.lname = update_owner.lname
         existing_owner.email = update_owner.email
+        existing_owner.password = update_owner.password
         db.session.merge(existing_owner)
         db.session.commit()
         return owner_schema.dump(existing_owner), 201
@@ -61,3 +62,9 @@ def read_appointments(owner_id):
             appointments.append(appt)
 
     return appointments
+
+def login(email, password):
+    owner = Owner.query.get("email", email)
+    owner_obj = owner_schema.dump(owner)
+    if password == owner_obj["password"]:
+        return owner_obj

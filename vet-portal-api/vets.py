@@ -20,6 +20,8 @@ def update(vet_id, vet):
     if existing_vet:
         update_vet = vet_schema.load(vet, session=db.session)
         existing_vet.name = update_vet.name
+        existing_vet.image = update_vet.image
+        existing_vet.bio = update_vet.bio
         db.session.merge(existing_vet)
         db.session.commit()
         return vet_schema.dump(existing_vet)
@@ -42,3 +44,12 @@ def create(vet):
     db.session.commit()
 
     return vet_schema.dump(new_vet), 201
+    
+def read_appointment_data(vet_id):
+    vet = Vet.query.get(vet_id)
+    vet_obj = vet_schema.dump(vet)
+    appt_data = []
+    for appt in vet_obj["appointments"]:
+        appt_data.append(appt["date"])
+    
+    return appt_data

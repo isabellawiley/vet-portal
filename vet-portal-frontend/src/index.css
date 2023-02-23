@@ -15,4 +15,7 @@ code {
 .page {
   position: absolute;
   top: 80px;
+  width: 100%;
+  background-color: rgb(213, 228, 255);
+  min-height: 100vh;
 }

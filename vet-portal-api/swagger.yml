@@ -258,6 +258,11 @@ paths:
               properties:
                 name:
                   type: "string"
+                image:
+                  type: "string"
+                bio:
+                  type: "string"
+                
       responses:
         "201":
           description: "Successfully created vet"
@@ -290,6 +295,10 @@ paths:
               type: "object"
               properties:
                 name:
+                  type: "string"
+                image:
+                  type: "string"
+                bio:
                   type: "string"
     delete:
       tags:

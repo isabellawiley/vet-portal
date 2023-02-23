@@ -7,7 +7,7 @@ import useToken from './components/owner/useToken';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Appointments from './components/appointment/Appointments';
-import Vets from './components/Vets';
+import Vets from './components/vets/Vets';
 
 function App() {
   const [owner, setOwner] = useState({});

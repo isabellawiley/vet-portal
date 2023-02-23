@@ -1,0 +1,27 @@
+
+.vets-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.vet-card {
+    width: 250px;
+    border: solid black;
+    margin: 25px;
+}
+
+.vet-image {
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    object-position: 50% 0%;
+}
+
+.vet-info {
+    padding: 5px;
+}
+
+.vet-info h2 {
+    text-align: center;
+}

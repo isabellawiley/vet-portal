@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import VetCard from "./VetCard";
 
 
 function Vets(){
@@ -11,10 +12,10 @@ function Vets(){
     },[])
 
     return(
-        <div>
+        <div className="vets-container">
             <h1>Vets</h1>
             {vets.map((vet) => {
-                return(<li key={vet.id}>{vet.name}</li>)
+                return(<VetCard key={vet.id} vet={vet} />)
             })}
         </div>
     )

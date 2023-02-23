@@ -1,10 +1,9 @@
-import './App.css';
 import { useEffect, useState } from 'react';
 import Dashboard from './components/owner/Dashboard';
 import {Routes, Route, Outlet, Link, useNavigate} from "react-router-dom";
 import Pets from './components/pet/Pets';
 import Login from './components/owner/Login';
-import useToken from './components/useToken';
+import useToken from './components/owner/useToken';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Appointments from './components/appointment/Appointments';
@@ -51,12 +50,14 @@ function App() {
           <Route path='/login' element={<Login setToken={setToken} setOwner={setOwner} navigate={navigate}/>} />
         </Routes>
       ): (
-        <Routes>
+        <div className='page'>
+          <Routes>
             <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments}/>} />
             <Route path='/my-pets' element={<Pets pets={pets} />} />
             <Route path='/my-appointments' element={<Appointments appointments={appointments} />} />
             <Route path='/vets' element={<Vets />} />
           </Routes>
+        </div>
       )}
           
       

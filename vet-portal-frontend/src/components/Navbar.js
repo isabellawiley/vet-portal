@@ -1,7 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
-function Navbar(){
+function Navbar({removeToken, setOwner}){
+    const navigate = useNavigate();
+
+    function logout(){
+        fetch("http://localhost:8000/logout", {
+            method: "POST",
+        })
+        .then(r => r.json())
+        .then(data => {
+            removeToken();
+            setOwner(null)
+            navigate('/login')
+        })
+    }
 
     return(
         <div>
@@ -17,6 +30,9 @@ function Navbar(){
                 </li>
                 <li>
                     <Link to='/vets'>Vets</Link>
+                </li>
+                <li>
+                    <button onClick={logout}>Logout</button>
                 </li>
             </ul>
         </div>

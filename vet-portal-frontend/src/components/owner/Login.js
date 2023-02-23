@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
-function Login({setToken}){
+function Login({setToken, setOwner, navigate}){
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: ''
@@ -11,19 +12,29 @@ function Login({setToken}){
 
         fetch("http://localhost:8000/token", {
             method: "POST",
-            headers: {'Authorization': 'Bearer access_token'},
+            headers: {
+                'Authorization': 'Bearer access_token',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 email: loginForm.email,
                 password: loginForm.password
             })
         })
         .then(r => r.json())
-        .then(data => setToken(data))
+        .then(data => {
+            setToken(data.access_token)
+            setOwner(data.owner)
+            localStorage.setItem('user', JSON.stringify(data.owner))
+            console.log(data.owner)
+        })
         
         setLoginForm(({
             email: '',
             password: ''
         }))
+
+        navigate('/dashboard')
     }
 
     function handleChange(event) {
@@ -46,6 +57,7 @@ function Login({setToken}){
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+            <Outlet />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 from flask import render_template
 import config
-from models import Owner, Pet, Vet, Appointment, owner_schema
+from models import Owner, Pet, Vet, Appointment, owner_schema, owners_schema
 from flask_cors import CORS, cross_origin
 import json
 from flask import request, jsonify
@@ -32,15 +32,15 @@ def refresh_expiring_jwts(response):
 def create_token():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    owner = Owner.query.filter("email" == email)
-    print("owner" , owner_schema.dump(owner))
-    ow2 = Owner.query.get(1)
-    print("owner2" , owner_schema.dump(ow2))
-    # owner_obj = owner_schema.dump(owner)
-    if email != "iw@gmail.com" or password != "pass123":
+    all_owners = Owner.query.all()
+    filtered_owner = filter(lambda owner: owner["email"] == email, owners_schema.dump(all_owners))
+    owner = list(filtered_owner)[0]
+    print(owner["email"]," ---&&---", email)
+    print(owner["password"]," ---&&---", password)
+    if email != owner["email"] or password != owner["password"]:
         return {"msg": "Wrong email or password"}, 401
     access_token = create_access_token(identity=email)
-    response = {"access_token": access_token}
+    response = {"access_token": access_token, "owner": owner}
     return response
 
 @app.route('/logout', methods=["POST"])

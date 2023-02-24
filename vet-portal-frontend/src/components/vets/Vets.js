@@ -2,14 +2,7 @@ import { useEffect, useState } from "react"
 import VetCard from "./VetCard";
 
 
-function Vets(){
-    const [vets, setVets] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:8000/api/vets')
-        .then(res => res.json())
-        .then(data => setVets(data))
-    },[])
+function Vets({vets}){
 
     return(
         <div className="vets-container">

@@ -13,13 +13,14 @@ function App() {
   const [owner, setOwner] = useState({});
   const [pets, setPets] = useState([]);
   const [appointments, setAppointments] = useState([]);
+  const [vets, setVets] = useState([]);
   const navigate = useNavigate();
   const {token, removeToken, setToken} = useToken();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = (localStorage.getItem("token"));
-    console.log("user: ", user)
+    // console.log("user: ", user)
     if(user && token){
       fetch(`http://localhost:8000/api/owners/${user.id}`)
       .then(res => res.json())
@@ -31,6 +32,9 @@ function App() {
       fetch(`http://localhost:8000/api/owners/${user.id}/appointments`)
         .then(res => res.json())
         .then(data => setAppointments(data))
+      fetch('http://localhost:8000/api/vets')
+        .then(res => res.json())
+        .then(data => setVets(data))
     }
     else {
       navigate('/login')
@@ -38,8 +42,9 @@ function App() {
     
   }, []);
 
-  console.log("owner: ", owner)
-  console.log("token: ", token)
+  // console.log("owner: ", owner)
+  // console.log("token: ", token)
+  console.log("vets: ", vets)
 
   return (
     <div className="App">
@@ -54,8 +59,8 @@ function App() {
           <Routes>
             <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments}/>} />
             <Route path='/my-pets' element={<Pets pets={pets} />} />
-            <Route path='/my-appointments' element={<Appointments appointments={appointments} />} />
-            <Route path='/vets' element={<Vets />} />
+            <Route path='/my-appointments' element={<Appointments appointments={appointments} pets={pets} vets={vets}/>} />
+            <Route path='/vets' element={<Vets vets={vets}/>} />
           </Routes>
         </div>
       )}

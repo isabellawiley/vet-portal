@@ -1,5 +1,6 @@
 from config import db, ma
 from marshmallow_sqlalchemy import fields
+from sqlalchemy.orm import backref
 
 class Appointment(db.Model):
     __tablename__ = "appointment"
@@ -26,7 +27,7 @@ class Pet(db.Model):
     age = db.Column(db.Integer)
     appointments = db.relationship(
         Appointment,
-        backref="pet",
+        backref=backref("pet", lazy="joined"),
         cascade="all, delete, delete-orphan",
         single_parent=True,
         order_by="desc(Appointment.date)"

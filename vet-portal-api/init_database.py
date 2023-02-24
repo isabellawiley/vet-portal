@@ -14,14 +14,14 @@ OWNERS_PETS = [
                 "name": "Thor",
                 "species": "cat",
                 "breed": "flamepoint siamese",
-                "image": "",
+                "image": "https://welovecatsandkittens.com/wp-content/uploads/2022/05/Flame-point-siamese.jpg",
                 "age": 3,
                 "appointments": [
                     {
                         "date": "2022-01-07 08:00:00",
                         "vet": {
                             "name": "Dr. Rodriguez",
-                            "image": "",
+                            "image": "https://www.seekpng.com/png/detail/266-2666925_free-stock-medical-doctor-clipart-doctor-cartoon-girl.png",
                             "bio": "i am a vet"
                         }
                     },
@@ -31,14 +31,14 @@ OWNERS_PETS = [
                 "name": "Tom",
                 "species": "cat",
                 "breed": "black",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1592729099357-25681e7f9395?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
                 "age": 3,
                 "appointments": [
                     {
                         "date": "2022-02-08 12:00:00",
                         "vet": {
                             "name": "Dr. Bob",
-                            "image": "",
+                            "image": "https://static.vecteezy.com/system/resources/previews/005/520/145/original/cartoon-drawing-of-a-doctor-vector.jpg",
                             "bio": "i am a vet too"
                         }
                     }
@@ -56,7 +56,7 @@ OWNERS_PETS = [
                 "name": "Guiness",
                 "species": "cat",
                 "breed": "siamese",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1568152950566-c1bf43f4ab28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80",
                 "age": 14,
                 "appointments": []
             },
@@ -64,14 +64,14 @@ OWNERS_PETS = [
                 "name": "Rosie",
                 "species": "cat",
                 "breed": "siamese",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
                 "age": 14,
                 "appointments": [
                     {
                         "date": "2022-01-07 08:00:00",
                         "vet": {
                             "name": "Dr. Susan",
-                            "image": "",
+                            "image": "https://img.freepik.com/premium-vector/female-doctor-cartoon-character-white-background_1639-28810.jpg?w=2000",
                             "bio": "i am a vet as well"
                         }
                     }
@@ -81,7 +81,7 @@ OWNERS_PETS = [
                 "name": "Otis",
                 "species": "cat",
                 "breed": "black",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1743&q=80",
                 "age": 1,
                 "appointments": []
             }
@@ -97,7 +97,7 @@ OWNERS_PETS = [
                 "name": "Mikey",
                 "species": "dog",
                 "breed": "good",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
                 "age": 5,
                 "appointments": []
             },
@@ -105,7 +105,7 @@ OWNERS_PETS = [
                 "name": "Sam",
                 "species": "dog",
                 "breed": "golden retriever",
-                "image": "",
+                "image": "https://images.unsplash.com/photo-1633722715463-d30f4f325e24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
                 "age": 13,
                 "appointments": []
             }

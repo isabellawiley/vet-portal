@@ -26,7 +26,7 @@ function Login({setToken, setOwner, navigate}){
             setToken(data.access_token)
             setOwner(data.owner)
             localStorage.setItem('user', JSON.stringify(data.owner))
-            console.log(data.owner)
+            // console.log(data.owner)
         })
         
         setLoginForm(({

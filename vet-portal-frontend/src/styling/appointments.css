@@ -1,0 +1,28 @@
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+li {
+    list-style: none;
+}
+
+.title {
+    text-align: center;
+}
+
+h2 {
+    display: inline-block;
+}
+
+.apt-container {
+    display: flex;
+    /* margin: 10%; */
+    gap: 1.5em;
+}
+
+.apt-card {
+    border: solid black;
+    padding: 10px;
+    text-align: center;
+}

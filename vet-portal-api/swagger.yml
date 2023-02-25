@@ -345,9 +345,9 @@ paths:
               type: "object"
               properties:
                 vet_id:
-                  type: "string"
+                  type: "integer"
                 pet_id:
-                  type: "string"
+                  type: "integer"
                 date:
                   type: "string"
       responses:
@@ -382,9 +382,9 @@ paths:
               type: "object"
               properties:
                 vet_id:
-                  type: "string"
+                  type: "integer"
                 pet_id:
-                  type: "string"
+                  type: "integer"
                 date:
                   type: "string"
     delete:

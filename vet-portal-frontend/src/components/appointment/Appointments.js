@@ -1,7 +1,7 @@
 import "../../styling/appointments.css";
 import AppointmentCard from "./AppointmentCard";
 
-function Appointments({appointments, pets, vets}){
+function Appointments({setAppointments, appointments, pets, vets}){
     let today = new Date();
     let upcoming = [];
     let past = [];
@@ -24,7 +24,7 @@ function Appointments({appointments, pets, vets}){
                 {upcoming.map((apt) => {
                     let pet = pets.find(pet => pet.id == apt.pet_id)
                     let vet = vets.find(vet => vet.id == apt.vet_id)
-                    return(<li key={apt.id}><AppointmentCard date={apt.date} pet={pet} vet={vet} /></li>)
+                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments}/></li>)
                 })}
             </div>
             <h2>Past</h2>
@@ -32,7 +32,7 @@ function Appointments({appointments, pets, vets}){
                 {past.map((apt) => {
                     let pet = pets.find(pet => pet.id == apt.pet_id)
                     let vet = vets.find(vet => vet.id == apt.vet_id)
-                    return(<li key={apt.id}><AppointmentCard date={apt.date} pet={pet} vet={vet} /></li>)
+                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} /></li>)
                 })}
             </div>
         </div>

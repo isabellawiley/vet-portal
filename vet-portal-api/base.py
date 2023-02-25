@@ -9,7 +9,8 @@ from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, u
 
 app = config.connex_app
 app.add_api(config.basedir / "swagger.yml")
-CORS(app.app)
+# CORS(app.app)
+# CORS(app.app, resources={r"/api/*": {"origins": "*"}})
 app.app.config['CORS_HEADERS'] ='Content-Type'
 
 @app.app.after_request
@@ -51,7 +52,7 @@ def logout():
 
 @app.route('/')
 @jwt_required()
-@cross_origin()
+# @cross_origin()
 def home():
     owners = Owner.query.all()
     pets = Pet.query.all()

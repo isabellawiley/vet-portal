@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets, setAppointments}){
     const [appointmentForm, setAppointmentForm] = useState({
-        pet_id: '',
-        vet_id: '',
+        pet_id: 0,
+        vet_id: 0,
         date: '',
         time: ''
     })
@@ -36,18 +36,22 @@ function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets,
             date: '',
             time: ''
         }))
+
+        setShowModal(false);
     }
 
     function handleChange(event) {
-        console.log(event.target)
         const {value, name} = event.target;
-        setAppointmentForm(prev => ({
-            ...prev, [name]: value
-        }))
-        if(name == "vet_id" || "pet_id"){
-            console.log('value:', value, 'name:', name)
-            console.log(appointmentForm.name)
+        if(name == 'vet_id' || name == 'pet_id'){
+            setAppointmentForm(prev => ({
+                ...prev, [name]: parseInt(value)
+            }));
             console.log(appointmentForm)
+        }
+        else{
+            setAppointmentForm(prev => ({
+                ...prev, [name]: value
+            }));
         }
     }
 
@@ -58,15 +62,16 @@ function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets,
                 <h3>New Appointment</h3>
                 <form onSubmit={handleSubmit}>
                     <label>Pet:</label>
-                    <select onChange={handleChange} value={appointmentForm.pet_id}>
+                    <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id">
+                        <option value='' disabled selected>Choose a pet</option>
                         {pets.map((pet) => {
-                            return(<option key={pet.id} value={pet.id} name="pet_id">{pet.name}</option>)
+                            return(<option key={pet.id} value={pet.id}>{pet.name}</option>)
                         })}
                     </select>
                     <label>Vet:</label>
-                    <select onChange={handleChange} value={appointmentForm.vet_id}>
+                    <select onChange={handleChange} value={appointmentForm.vet_id} name="vet_id">
                         {vets.map((vet) => {
-                            return(<option key={vet.id} value={vet.id} name="vet_id">{vet.name}</option>)
+                            return(<option key={vet.id} value={vet.id}>{vet.name}</option>)
                         })}
                     </select>
                     <label>Date:</label>

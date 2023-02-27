@@ -16,12 +16,16 @@ def read_one(appointment_id):
 
 def update(appointment_id, appointment):
     existing_appointment = Appointment.query.get(appointment_id)
+    print(appointment, appointment_id)
 
     if existing_appointment:
         update_appointment = appointment_schema.load(appointment, session=db.session)
         existing_appointment.date = update_appointment.date
+        existing_appointment.pet_id = update_appointment.pet_id
+        existing_appointment.vet_id = update_appointment.vet_id
         db.session.merge(existing_appointment)
         db.session.commit()
+        print(appointment_schema.dump(existing_appointment))
         return appointment_schema.dump(existing_appointment), 201
     else:
         abort(404, f"Appointment with ID {appointment_id} not found")

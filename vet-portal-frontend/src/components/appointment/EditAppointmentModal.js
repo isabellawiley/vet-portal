@@ -1,17 +1,19 @@
 import { useState } from "react";
 
-function EditAppointmentModal({id, vets, pets, showModal, setShowModal, appointments, setAppointments, pet_id, vet_id}) {
-    console.log(id, pet_id, vet_id)
+function EditAppointmentModal({id, vets, pets, showModal, setShowModal, appointments, setAppointments, pet_id, vet_id, date, time}) {
+    console.log("id: ", id, "pet_id: ", pet_id, "date: ", date, "time: ", time)
     const [appointmentForm, setAppointmentForm] = useState({
         pet_id: pet_id,
         vet_id: vet_id,
-        date: '',
-        time: ''
+        date: date,
+        time: time
     })
+    console.log('before:',appointmentForm)
     let allAppt = appointments;
 
     function handleSubmit(event){
         event.preventDefault();
+        console.log(appointmentForm.date + "T" + appointmentForm.time)
 
         fetch(`http://localhost:8000/api/appointments/${id}`, {
             method: 'PUT',
@@ -24,7 +26,6 @@ function EditAppointmentModal({id, vets, pets, showModal, setShowModal, appointm
                 pet_id: appointmentForm.pet_id,
                 vet_id: appointmentForm.vet_id,
             }),
-            // mode: 'no-cors'
         })
         .then(r => r.json())
         .then((appt) => {
@@ -45,12 +46,16 @@ function EditAppointmentModal({id, vets, pets, showModal, setShowModal, appointm
 
     function handleChange(event) {
         const {value, name} = event.target;
-        setAppointmentForm(prev => ({
-            ...prev, [name]: value
-        }));
-        if(name == "date"){
-            console.log(value)
-            console.log(typeof value)
+        if(name == 'vet_id' || name == 'pet_id'){
+            setAppointmentForm(prev => ({
+                ...prev, [name]: parseInt(value)
+            }));
+            console.log('hi')
+        }
+        else{
+            setAppointmentForm(prev => ({
+                ...prev, [name]: value
+            }));
         }
     }
 
@@ -61,15 +66,15 @@ function EditAppointmentModal({id, vets, pets, showModal, setShowModal, appointm
                 <h3>Edit Appointment</h3>
                 <form onSubmit={handleSubmit}>
                     <label>Pet:</label>
-                    <select onChange={handleChange} value={appointmentForm.pet_id}>
+                    <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id">
                         {pets.map((pet) => {
-                            return(<option key={pet.id} value={pet.id} name="pet_id">{pet.name}</option>)
+                            return(<option key={pet.id} value={pet.id}>{pet.name}</option>)
                         })}
                     </select>
                     <label>Vet:</label>
-                    <select onChange={handleChange} value={appointmentForm.vet_id}>
+                    <select onChange={handleChange} value={appointmentForm.vet_id} name="vet_id">
                         {vets.map((vet) => {
-                            return(<option key={vet.id} value={vet.id} name="vet_id">{vet.name}</option>)
+                            return(<option key={vet.id} value={vet.id}>{vet.name}</option>)
                         })}
                     </select>
                     <label>Date:</label>

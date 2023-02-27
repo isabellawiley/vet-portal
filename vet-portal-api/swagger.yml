@@ -179,7 +179,7 @@ paths:
               type: "object"
               properties:
                 owner_id:
-                  type: "string"
+                  type: "integer"
                 name:
                   type: "string"
                 species:

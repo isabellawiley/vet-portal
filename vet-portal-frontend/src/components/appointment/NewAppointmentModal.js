@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets, setAppointments}){
+function NewAppointmentModal({showNewModal, setShowNewModal, appointments, pets, vets, setAppointments}){
     const [appointmentForm, setAppointmentForm] = useState({
         pet_id: 0,
         vet_id: 0,
@@ -31,13 +31,13 @@ function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets,
         }))
 
         setAppointmentForm(({
-            pet_id: '',
-            vet_id: '',
+            pet_id: 0,
+            vet_id: 0,
             date: '',
             time: ''
         }))
 
-        setShowModal(false);
+        setShowNewModal(false);
     }
 
     function handleChange(event) {
@@ -56,20 +56,21 @@ function NewAppointmentModal({showModal, setShowModal, appointments, pets, vets,
     }
 
     return(
-        <div className={showModal ? "modal show" : "modal"}>
+        <div className={showNewModal ? "modal show" : "modal"}>
             <div className="modal-content">
-                <span className="close" onClick={() => setShowModal(false)}>&times;</span>
+                <span className="close" onClick={() => setShowNewModal(false)}>&times;</span>
                 <h3>New Appointment</h3>
                 <form onSubmit={handleSubmit}>
                     <label>Pet:</label>
                     <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id">
-                        <option value='' disabled selected>Choose a pet</option>
+                        <option value={0} disabled>Choose a pet</option>
                         {pets.map((pet) => {
                             return(<option key={pet.id} value={pet.id}>{pet.name}</option>)
                         })}
                     </select>
                     <label>Vet:</label>
                     <select onChange={handleChange} value={appointmentForm.vet_id} name="vet_id">
+                        <option value={0} disabled>Choose a vet</option>
                         {vets.map((vet) => {
                             return(<option key={vet.id} value={vet.id}>{vet.name}</option>)
                         })}

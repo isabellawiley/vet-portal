@@ -49,7 +49,7 @@ function NewPetModal({owner_id}){
 
     return(
         <div>
-            <button onClick={() => setShowModal(true)}>Create New Pet</button>
+            <button className="card-button" onClick={() => setShowModal(true)}>Create New Pet</button>
             <div className={showModal ? "modal show" : "modal"}>
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>

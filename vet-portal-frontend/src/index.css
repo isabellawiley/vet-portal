@@ -19,3 +19,50 @@ code {
   background-color: rgb(213, 228, 255);
   min-height: 100vh;
 }
+
+.card-button {
+  border: none;
+  /* background-color: rgb(73, 96, 139); */
+  background-color: rgb(102, 135, 197);
+  font-size: 15px;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.473);
+}
+
+.card-button:hover {
+  background-color: rgb(73, 96, 139);
+  color: white;
+  cursor: pointer;
+}
+
+.delete-button {
+  background-color: rgb(252, 216, 222);
+  border: none;
+  font-size: 15px;
+  padding: 8px 15px;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.473);
+  /* float: right; */
+  /* right: 5px; */
+}
+
+.delete-button:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.button-container {
+  padding: 10px;
+}
+
+.button-container .card-button {
+  float: left;
+}
+
+.button-container .delete-button{
+  float: right;
+}

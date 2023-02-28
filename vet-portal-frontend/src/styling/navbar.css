@@ -65,7 +65,7 @@ header li a {
     text-decoration: none;
 }
 
-button {
+.nav-button {
     background-color: transparent;
     border: none;
     font: inherit;

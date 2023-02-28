@@ -19,7 +19,7 @@ function DeleteAppointment({id, setShowModal}) {
 
     return(
         <div>
-            <button onClick={handleDelete}>Delete Appointment</button>
+            <button className="delete-button" onClick={handleDelete}>Delete Appointment</button>
         </div>
     )
 }

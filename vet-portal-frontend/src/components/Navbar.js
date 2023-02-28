@@ -42,7 +42,7 @@ function Navbar({removeToken, setOwner}){
                         <Link to='/vets'>Vets</Link>
                     </li>
                     <li>
-                        <button onClick={logout}>Logout</button>
+                        <button className="nav-button" onClick={logout}>Logout</button>
                     </li>
                 </ul>
             </nav>

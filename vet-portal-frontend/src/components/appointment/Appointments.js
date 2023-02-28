@@ -4,7 +4,6 @@ import AppointmentCard from "./AppointmentCard";
 import NewAppointmentModal from "./NewAppointmentModal";
 
 function Appointments({setAppointments, appointments, pets, vets}){
-    const [showNewModal, setShowNewModal] = useState(false);
     let today = new Date();
     let upcoming = [];
     let past = [];
@@ -22,8 +21,7 @@ function Appointments({setAppointments, appointments, pets, vets}){
     return(
         <div className="container">
             <h1 className="title">Appointments</h1>
-            <button onClick={() => setShowNewModal(true)}>New Appointment</button>
-            <NewAppointmentModal showNewModal={showNewModal} setShowNewModal={setShowNewModal} appointments={appointments} pets={pets} vets={vets} setAppointments={setAppointments}/>
+            <NewAppointmentModal appointments={appointments} pets={pets} vets={vets} setAppointments={setAppointments}/>
             <h2>Upcoming</h2>
             <div className="apt-container">
                 {upcoming.map((apt) => {

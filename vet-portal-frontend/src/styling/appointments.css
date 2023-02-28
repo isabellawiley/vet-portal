@@ -22,9 +22,12 @@ h2 {
 }
 
 .apt-card {
-    border: solid black;
+    /* border: solid black; */
     padding: 10px;
     text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.473);
 }
 
 /* modal */
@@ -50,9 +53,10 @@ h2 {
 .modal-content {
     background-color: white;
     margin: auto;
-    padding: 20px;
-    border: solid black;
+    padding: 35px 25px;
+    /* border: solid black; */
     width: 80%;
+    border-radius: 25px;
 }
 
 .close {
@@ -60,6 +64,7 @@ h2 {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    transition-duration: 0.4s;
 }
 
 .close:hover {

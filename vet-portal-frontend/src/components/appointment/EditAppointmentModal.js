@@ -62,12 +62,12 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
 
     return(
         <div>
-            <button className="edit-button" onClick={() => setShowModal(true)}>Edit</button>
+            <button className="card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? "modal show" : "modal"}>
                 <div className="modal-content">
                     <span className="close" onClick={() => (setShowModal(false))}>&times;</span>
                     <h3>Edit Appointment</h3>
-                    <form onSubmit={handleSubmit}>
+                    <form>
                         <label>Pet:</label>
                         <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id">
                             {pets.map((pet) => {
@@ -84,9 +84,11 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                         <input onChange={handleChange} type="date" name="date" value={appointmentForm.date}/>
                         <label>Time:</label>
                         <input onChange={handleChange} type="string" name="time" value={appointmentForm.time}/>
-                        <input type="submit" value="submit"/>
                     </form>
-                    <DeleteAppointment id={id} setShowModal={setShowModal}/>
+                    <div className="button-container">
+                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <DeleteAppointment id={id} setShowModal={setShowModal}/>
+                    </div>
                 </div>
             </div>
         </div>

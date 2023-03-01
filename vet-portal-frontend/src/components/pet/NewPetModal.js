@@ -6,7 +6,8 @@ function NewPetModal({owner_id}){
         name: "",
         image: "",
         species: "",
-        breed: ""
+        breed: "",
+        age: 0
     })
 
     function handleSubmit(event){
@@ -22,7 +23,8 @@ function NewPetModal({owner_id}){
                 breed: petForm.breed,
                 name: petForm.name,
                 owner_id: owner_id,
-                species: petForm.species
+                species: petForm.species,
+                age: petForm.age
             })
         })
         .then(res => res.json())
@@ -34,7 +36,8 @@ function NewPetModal({owner_id}){
             name: "",
             image: "",
             species: "",
-            breed: ""
+            breed: "",
+            age: 0
         })
 
         setShowModal(false)
@@ -63,6 +66,8 @@ function NewPetModal({owner_id}){
                         <input onChange={handleChange} type="string" name="species"/>
                         <label>Breed:</label>
                         <input onChange={handleChange} type="string" name="breed"/>
+                        <label>Age:</label>
+                        <input onChange={handleChange} type="integer" name="age"/>
                         <input type="submit" value="submit"/>
                     </form>
                 </div>

@@ -186,6 +186,10 @@ paths:
                   type: "string"
                 breed:
                   type: "string"
+                image:
+                  type: "string"
+                age:
+                  type: "integer"
       responses:
         "201":
           description: "Successfully created a pet"
@@ -222,6 +226,8 @@ paths:
                 species:
                   type: "string"
                 breed:
+                  type: "string"
+                image:
                   type: "string"
     delete:
       tags:

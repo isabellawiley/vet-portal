@@ -18,7 +18,20 @@ code {
   width: 100%;
   background-color: rgb(213, 228, 255);
   min-height: 100vh;
+  padding-bottom: 100px;
 }
+
+.page-container {
+  margin: 50px;
+}
+
+.content-container {
+  margin: 30px;
+}
+
+/* #pets {
+  display: flex;
+} */
 
 .card-button {
   border: none;

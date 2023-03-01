@@ -49,7 +49,7 @@ function App() {
   return (
     <div className="App">
       <Navbar removeToken={removeToken} setOwner={setOwner}/>
-      {owner ? <h1>Welcome {owner.fname}!</h1> : <h1>Welcome to Pet Portal</h1>}
+      {/* {owner ? <h1>Welcome {owner.fname}!</h1> : <h1>Welcome to Pet Portal</h1>} */}
       {!token && token!=="" &&token!== undefined && !owner ? (
         <Routes>
           <Route path='/login' element={<Login setToken={setToken} setOwner={setOwner} navigate={navigate}/>} />

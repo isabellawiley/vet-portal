@@ -3,12 +3,13 @@ import DeletePet from "./DeletePet";
 
 
 function EditPetModal({pet}){
+    const {name, species, breed, age} = pet;
     const [showModal, setShowModal] = useState(false);
     const [petForm ,setPetForm] = useState({
-        name: pet.name,
-        species: pet.species,
-        breed: pet.breed,
-        age: pet.age
+        name: name,
+        species: species,
+        breed: breed,
+        age: age
     })
 
     function handleSubmit(event){
@@ -58,13 +59,13 @@ function EditPetModal({pet}){
                     <h1>Edit Pet</h1>
                     <form>
                         <label>Name: </label>
-                        <input onChange={handleChange} type='string' name='name' value={pet.name}/>
+                        <input onChange={handleChange} type='string' name='name' value={petForm.name}/>
                         <label>Species: </label>
-                        <input onChange={handleChange} type='string' name='species' value={pet.species}/>
+                        <input onChange={handleChange} type='string' name='species' value={petForm.species}/>
                         <label>Breed: </label>
-                        <input onChange={handleChange} type='string' name="breed" value={pet.breed}/>
+                        <input onChange={handleChange} type='string' name="breed" value={petForm.breed}/>
                         <label>Age: </label>
-                        <input onChange={handleChange} type='integer' name="age" value={pet.age}/>
+                        <input onChange={handleChange} type='integer' name="age" value={petForm.age}/>
                         {/* if input value is null set '' */}
                     </form>
                     <div className="button-container">

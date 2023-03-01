@@ -6,6 +6,7 @@ function Dashboard({owner, pets, appointments}) {
 
     return(
         <div>
+            <h1>Dashboard</h1>
             <OwnerCard owner={owner} />
             <Scroll data={pets} />
             <Outlet />

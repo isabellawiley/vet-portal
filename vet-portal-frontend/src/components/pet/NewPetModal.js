@@ -45,9 +45,16 @@ function NewPetModal({owner_id}){
 
     function handleChange(event){
         const {value, name} = event.target;
-        setPetForm(prev => ({
-            ...prev, [name]: value
-        }));
+        if(name == "age"){
+            setPetForm(prev => ({
+                ...prev, [name]: parseInt(value)
+            }))
+        }
+        else{
+            setPetForm(prev => ({
+                ...prev, [name]: value
+            }))
+        }  
     }
 
     return(

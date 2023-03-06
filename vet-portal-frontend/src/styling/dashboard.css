@@ -1,12 +1,35 @@
+/* Dashboard Content */
+
+.title-center {
+    text-align: center;
+}
+
+.dashboard-content {
+    display: flex;
+}
+
+.dashboard-left {
+    flex-basis: 30%;
+}
+
+.dashboard-right {
+    flex-basis: 70%;
+}
+
+.content-title {
+    color: rgb(73, 96, 139);
+}
+
+/* Owner Content */
 
 .owner-card {
     max-width: 200px;
-    margin: 2rem;
+    /* margin: 2rem; */
     box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     background-color: white;
     padding: 20px;
-    line-height: 1rem;
+    line-height: 1.5rem;
 }
 
 .owner-card h2 {
@@ -19,6 +42,132 @@
 }
 
 .owner-card button {
-    left: 150px;
+    left: 70%;
     position: relative;
+}
+
+/* Pet Scroll */
+
+.scroll-container {
+    max-width: 400px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.scroll-container a {
+    color: black;
+}
+
+.pet-scroll-cards {
+    display: flex;
+    /* padding: 25px 0px; */
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    margin-top: 0;
+}
+
+.pet-scroll-card {
+    /* border-radius: 12px; */
+    box-shadow: 0 5px 15px rgba(0,0,0,15%);
+    scroll-snap-align: start;
+    transition: all 0.8s;
+}
+
+.pet-scroll-card:not(:last-child) {
+    margin-right: 10px;
+}
+
+.pet-scroll-cards::-webkit-scrollbar {
+    height: 12px;
+}
+
+.pet-scroll-cards::-webkit-scrollbar-thumb,.pet-scroll-cards::-webkit-scrollbar-track {
+    border-radius: 92px;
+}
+
+.pet-scroll-cards::-webkit-scrollbar-thumb {
+    background-color: rgb(73, 96, 139);
+}
+
+.pet-scroll-cards::-webkit-scrollbar-track {
+    background-color: #edf2f4;
+}
+
+.pet-scroll {
+    max-width: 200px;
+    /* max-height: 200px; */
+    display: flex;
+    flex-direction: column;
+}
+
+.photo {
+    flex-basis: 60%;
+    height: auto;
+    position: relative;
+}
+
+.pet-scroll img {
+    /* position: absolute; */
+    /* top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+    width: 200px;
+    height: 200px;
+    display: block;
+    object-fit: cover;
+    /* object-position: center; */
+}
+
+.pet-name {
+    flex-basis: 40%;
+    text-align: center;
+}
+
+.pet-name h2 {
+    margin: 0;
+}
+
+/* Appointment Scroll */
+
+.appt-scroll-cards {
+    display: flex;
+    list-style: none;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+}
+
+.appt-scroll-card {
+    display: flex;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,15%);
+    scroll-snap-align: start;
+    transition: all 0.4s;
+}
+
+.appt-scroll-card h3 {
+    margin: 0 auto;
+}
+
+.appt-scroll-card p {
+    margin-bottom: 0;
+}
+
+.appt-scroll-cards::-webkit-scrollbar{
+    height: 12px;
+}
+
+.appt-scroll-cards::-webkit-scrollbar-thumb, .appt-scroll-cards::-webkit-scrollbar-track {
+    border-radius: 92px;
+}
+
+.appt-scroll-cards::-webkit-scrollbar-thumb {
+    background-color: rgb(73, 96, 139);
+}
+
+.appt-scroll-cards::-webkit-scrollbar-track {
+    background-color: #edf2f4;
 }

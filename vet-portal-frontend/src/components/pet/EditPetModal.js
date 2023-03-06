@@ -3,10 +3,11 @@ import DeletePet from "./DeletePet";
 
 
 function EditPetModal({pet}){
-    const {name, species, breed, age} = pet;
+    const {name, image, species, breed, age} = pet;
     const [showModal, setShowModal] = useState(false);
     const [petForm ,setPetForm] = useState({
         name: name,
+        image: image,
         species: species,
         breed: breed,
         age: age
@@ -24,6 +25,7 @@ function EditPetModal({pet}){
             },
             body: JSON.stringify({
                 name: petForm.name,
+                image: petForm.image,
                 species: petForm.species,
                 breed: petForm.breed,
                 age: petForm.age
@@ -60,6 +62,8 @@ function EditPetModal({pet}){
                     <form>
                         <label>Name: </label>
                         <input onChange={handleChange} type='string' name='name' value={petForm.name}/>
+                        <label>Image:</label>
+                        <input onChange={handleChange} type="string" name="image"/>
                         <label>Species: </label>
                         <input onChange={handleChange} type='string' name='species' value={petForm.species}/>
                         <label>Breed: </label>

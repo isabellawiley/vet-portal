@@ -57,7 +57,7 @@ function App() {
       ): (
         <div className='page'>
           <Routes>
-            <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments}/>} />
+            <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>}/>
             <Route path='/my-pets' element={<Pets pets={pets} owner_id={owner.id} />} />
             <Route path='/my-appointments' element={<Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>} />
             <Route path='/vets' element={<Vets vets={vets}/>} />

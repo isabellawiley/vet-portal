@@ -41,7 +41,7 @@
     margin: 1rem auto;
 }
 
-.owner-card button {
+.edit-owner.card-button {
     left: 70%;
     position: relative;
 }

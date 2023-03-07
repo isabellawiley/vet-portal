@@ -49,18 +49,40 @@ function EditOwnerModal({owner}){
 
     return(
         <div>
-            <button className="card-button" onClick={() => setShowModal(true)}>Edit</button>
+            <button className="edit-owner card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? 'modal show' : 'modal'}>
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-                    <h1>Edit Owner Information</h1>
+                    <h3 className="modal-title">Edit Owner Information</h3>
                     <form>
-                        <label>First Name: </label>
-                        <input onChange={handleChange} type='string' name='fname' value={ownerForm.fname}/>
-                        <label>Last Name: </label>
-                        <input onChange={handleChange} type='string' name='lname' value={ownerForm.lname} />
-                        <label>Email: </label>
-                        <input onChange={handleChange} type='email' name='email' value={ownerForm.email} />
+                        <div className="row-container">
+                            <div className="row left">
+                                <div className="col">
+                                    <label>First Name: </label>
+                                </div>
+                                <div className="col">
+                                    <input onChange={handleChange} type='string' name='fname' value={ownerForm.fname}/>
+                                </div>
+                            </div>
+                            <div className="row right">
+                                <div className="col">
+                                    <label>Last Name: </label>
+                                </div>
+                                <div className="col">
+                                    <input onChange={handleChange} type='string' name='lname' value={ownerForm.lname} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row-container">
+                            <div className="row left">
+                                <div className="col">
+                                    <label>Email: </label>
+                                </div>
+                                <div className="col">
+                                    <input onChange={handleChange} type='email' name='email' value={ownerForm.email} />                                
+                                </div>
+                            </div>
+                        </div>
                     </form>
                     <div className="button-container">
                         <button className="edit card-button" onClick={handleSubmit}>Save</button>

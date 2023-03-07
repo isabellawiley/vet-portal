@@ -109,6 +109,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
                                     <option value='Sick Pet'>Sick Pet</option>
                                     <option value='Vaccinations'>Vaccinations</option>
                                     <option value='Microchipping'>Microchipping</option>
+                                    <option value='Spay/Neuter'>Spay/Neuter</option>
                                 </select>
                             </div>
                         </div>

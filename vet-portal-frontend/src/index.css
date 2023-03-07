@@ -70,6 +70,8 @@ code {
 
 .button-container {
   padding: 10px;
+  margin: 1% auto;
+  width: 90%;
 }
 
 .button-container .card-button {

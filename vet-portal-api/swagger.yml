@@ -356,6 +356,8 @@ paths:
                   type: "integer"
                 date:
                   type: "string"
+                reason:
+                  type: "string"
       responses:
         "201":
           description: "Successfully created an appointment"
@@ -392,6 +394,8 @@ paths:
                 pet_id:
                   type: "integer"
                 date:
+                  type: "string"
+                reason:
                   type: "string"
     delete:
       operationId: "appointments.delete"

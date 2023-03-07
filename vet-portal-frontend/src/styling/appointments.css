@@ -57,6 +57,7 @@ h2 {
     /* border: solid black; */
     width: 80%;
     border-radius: 25px;
+    box-sizing: border-box;
 }
 
 .close {
@@ -71,4 +72,72 @@ h2 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Form */
+
+.modal-title{
+    text-align: center;
+}
+
+input[type=time], input[type=date], select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    /* resize: vertical; */
+    box-sizing: border-box;
+    height: 45px;
+}
+
+label {
+    padding: 12px 12px 5px 0;
+    display: inline-block;
+}
+
+.col {
+    /* float: left; */
+    width: 95%;
+    margin-top: 0;
+    text-align: left;
+}
+
+.full-col {
+    /* float: left; */
+    width: 98%;
+    margin-top: 0;
+    text-align: left;
+}
+
+/* form {
+    padding: 20px;
+} */
+
+.row {
+    width: 50%;
+    margin: auto;
+}
+
+.full-row {
+    width: 90%;
+    margin: auto;
+}
+
+/* .small-row {
+    width: 40%;
+    margin: auto;
+} */
+
+.left {
+    /* float: left; */
+    display: inline-block;
+}
+
+.right {
+    float: right;
+}
+
+.row-container {
+    width: 90%;
+    margin: auto;
 }

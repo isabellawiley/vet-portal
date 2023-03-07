@@ -8,6 +8,7 @@ class Appointment(db.Model):
     date = db.Column(db.DateTime)
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"))
     vet_id = db.Column(db.Integer, db.ForeignKey("vet.id"))
+    reason = db.Column(db.String)
 
 class AppointmentSchema(ma.SQLAlchemyAutoSchema):
     class Meta:

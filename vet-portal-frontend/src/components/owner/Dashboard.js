@@ -12,6 +12,9 @@ function Dashboard({owner, pets, appointments, vets}) {
             upcoming.push(apt)
         }
     });
+    
+    // let sortedAppts = upcoming.sort((a,b) => (a.date - b.date));
+    // console.log('sorted: ',sortedAppts, 'up:', upcoming);
 
     return(
         <div className="page-container">

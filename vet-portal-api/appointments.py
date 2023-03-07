@@ -23,6 +23,7 @@ def update(appointment_id, appointment):
         existing_appointment.date = update_appointment.date
         existing_appointment.pet_id = update_appointment.pet_id
         existing_appointment.vet_id = update_appointment.vet_id
+        existing_appointment.reason = update_appointment.reason
         db.session.merge(existing_appointment)
         db.session.commit()
         print(appointment_schema.dump(existing_appointment))

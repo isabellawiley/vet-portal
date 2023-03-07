@@ -65,6 +65,7 @@
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     margin-top: 0;
+    padding-left: 0;
 }
 
 .pet-scroll-card {
@@ -136,6 +137,7 @@
     list-style: none;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
+    padding-left: 0;
 }
 
 .appt-scroll-card {
@@ -146,6 +148,7 @@
     box-shadow: 0 5px 15px rgba(0,0,0,15%);
     scroll-snap-align: start;
     transition: all 0.4s;
+    min-width: 200px;
 }
 
 .appt-scroll-card h3 {

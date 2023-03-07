@@ -18,12 +18,13 @@ OWNERS_PETS = [
                 "age": 3,
                 "appointments": [
                     {
-                        "date": "2022-01-07 08:00:00",
+                        "date": "2022-01-07T08:00:00",
                         "vet": {
                             "name": "Dr. Rodriguez",
                             "image": "https://www.seekpng.com/png/detail/266-2666925_free-stock-medical-doctor-clipart-doctor-cartoon-girl.png",
                             "bio": "i am a vet"
-                        }
+                        },
+                        "reason": "Annual Physical Exam"
                     },
                 ]
             },
@@ -35,12 +36,13 @@ OWNERS_PETS = [
                 "age": 3,
                 "appointments": [
                     {
-                        "date": "2022-02-08 12:00:00",
+                        "date": "2022-02-08T12:00:00",
                         "vet": {
                             "name": "Dr. Bob",
                             "image": "https://static.vecteezy.com/system/resources/previews/005/520/145/original/cartoon-drawing-of-a-doctor-vector.jpg",
                             "bio": "i am a vet too"
-                        }
+                        },
+                        "reason": "Dental Cleaning"
                     }
                 ]
             }
@@ -68,12 +70,13 @@ OWNERS_PETS = [
                 "age": 14,
                 "appointments": [
                     {
-                        "date": "2022-01-07 08:00:00",
+                        "date": "2022-01-07T08:00:00",
                         "vet": {
                             "name": "Dr. Susan",
                             "image": "https://img.freepik.com/premium-vector/female-doctor-cartoon-character-white-background_1639-28810.jpg?w=2000",
                             "bio": "i am a vet as well"
-                        }
+                        },
+                        "reason": "Nail Trim"
                     }
                 ]
             },

@@ -1,11 +1,13 @@
 import "../../styling/vets.css";
 
 function VetCard({vet}) {
-    const {name, bio, image} = vet
+    const {id, name, bio, image} = vet
 
     return(
-        <div className="vet-card">
-            <img src={image} alt="vet photo" className="vet-image"/>
+        <div className={id %2 == 0 ? "vet-card reverse": "vet-card"}>
+            <div className="vet-image">
+                <img src={image} alt="vet photo"/>
+            </div>
             <div className="vet-info">
                 <h2>{name}</h2>
                 <p>{bio}</p>

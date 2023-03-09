@@ -21,7 +21,9 @@ function Navbar({removeToken, setOwner}){
 
     return(
         <header>
-            <img src={process.env.PUBLIC_URL + "/vet.png"} alt="logo" className="logo"/>
+            <Link to='/'>
+                <img src={process.env.PUBLIC_URL + "/vet.png"} alt="logo" className="logo"/>
+            </Link>
             <nav>
                 <div className={isActive ? 'change' : 'hamburger'} onClick={() => setIsActive(!isActive)}>
                     <div className="bar1"></div>
@@ -29,6 +31,9 @@ function Navbar({removeToken, setOwner}){
                     <div className="bar3"></div>
                 </div>
                 <ul className={isActive ? "menu expanded" : "menu"}>
+                    <li>
+                        <Link to='/'>Home</Link>
+                    </li>
                     <li>
                         <Link to='/dashboard'>Dashboard</Link>
                     </li>

@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "Annual Wellness Exam",
+        "image": "vet-portal-services/pet-Wellness-Exams.jpg",
+        "description": "Routine wellness exams are recommended for all pets. These check-ups allow our vets to search for any early signs of disease and to monitor your pet's overall health."
+    },
+    {
+        "id": 2,
+        "title": "Dental Cleaning",
+        "image": "vet-portal-services/pet-dental-cleaning.jpg",
+        "description": "A dental cleaning will include a thorough examination of your pet's teeth as well as a cleaning and polishing to remove plaque and tartar build up."
+    },
+    {
+        "id": 3,
+        "title": "Spay/Neuter",
+        "image": "vet-portal-services/Spay-Neuter.jpg",
+        "description": "Spay/neutering will help to protect your pet against certain illnesses as well as reduce certain unwanted behaviors. Your vet will discuss the appropraite time to pursue this procedure for your pet."
+    },
+    {
+        "id": 4,
+        "title": "Vaccinations",
+        "image": "vet-portal-services/pet-vaccinations.jpg",
+        "description": "Your vet will consult you on the appropriate vaccination schedule to protect your pet from certain illnesses."
+    },
+    {
+        "id": 5,
+        "title": "Grooming",
+        "image": "vet-portal-services/pet-grooming.jpg",
+        "description": "Our grooming service will help your furry friend look and feel their best!"
+    },
+    {
+        "id": 6,
+        "title": "Nail Trim",
+        "image": "vet-portal-services/nail-trim.jpg",
+        "description": "Our skilled technicians will precisely trim your pet's nails while providing a nurturing environment for you furry friend."
+    },
+    {
+        "id": 7,
+        "title": "Sick Pet",
+        "image": "vet-portal-services/sick-pet.jpg",
+        "description": "If your pet is showing any signs of illness or distress, our vets will provide thorough examinations and testing to find the root issue and create a care plan for your pet."
+    },
+    {
+        "id": 8,
+        "title": "Microchipping",
+        "image": "vet-portal-services/microchip-dog.jpg",
+        "description": "Every microchip is associated with a unique ID that provides a permanent of identification for you pet. This microchip can be used to trace your pet back to you."
+    }
+]

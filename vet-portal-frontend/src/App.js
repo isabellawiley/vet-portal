@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Appointments from './components/appointment/Appointments';
 import Vets from './components/vets/Vets';
+import Home from './components/Home';
 
 function App() {
   const [owner, setOwner] = useState({});
@@ -57,6 +58,7 @@ function App() {
       ): (
         <div className='page'>
           <Routes>
+            <Route path='/' element={<Home />}/>
             <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>}/>
             <Route path='/my-pets' element={<Pets pets={pets} owner_id={owner.id} />} />
             <Route path='/my-appointments' element={<Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>} />

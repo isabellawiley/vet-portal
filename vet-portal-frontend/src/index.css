@@ -68,6 +68,15 @@ code {
   cursor: pointer;
 }
 
+.new {
+  margin-left: 15%;
+}
+.edit {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+
 .button-container {
   padding: 10px;
   margin: 1% auto;
@@ -118,7 +127,7 @@ code {
 .blurb, .contact {
   display: flex;
   margin: 5%;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .blurb-text {

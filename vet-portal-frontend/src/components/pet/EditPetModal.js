@@ -54,7 +54,7 @@ function EditPetModal({pet}){
 
     return(
         <div>
-            <button className="card-button" onClick={() => setShowModal(true)}>Edit</button>
+            <button className="edit card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? 'modal show' : 'modal'}>
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
@@ -141,7 +141,7 @@ function EditPetModal({pet}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={handleSubmit}>Save</button>
                         <DeletePet id={pet.id} setShowModal={setShowModal} />
                     </div>
                 </div>

@@ -5,7 +5,7 @@ function Pets({pets, owner_id}) {
     console.log(pets)
     return(
         <div className="page-container">
-            <h1>My Pets</h1>
+            <h1 className="center">My Pets</h1>
             <NewPetModal owner_id={owner_id}/>
             {pets ? 
             <div id='pets' className="content-container">{pets.map((pet) => {

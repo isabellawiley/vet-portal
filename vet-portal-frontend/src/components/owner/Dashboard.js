@@ -18,10 +18,10 @@ function Dashboard({owner, pets, appointments, vets}) {
 
     return(
         <div className="page-container">
-            <h1 className="title-center">Dashboard</h1>
+            <h1 className="center">Dashboard</h1>
             <div className="dashboard-content">
                 <div className="dashboard-left">
-                    <h2 className="content-title">Owner Info</h2>
+                    <h2 className="content-title center">Owner Info</h2>
                     <OwnerCard owner={owner} />
                 </div>
                 <div className="dashboard-right">

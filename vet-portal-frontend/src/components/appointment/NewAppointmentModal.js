@@ -50,7 +50,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
             setAppointmentForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }));
-            console.log(appointmentForm)
+            // console.log(appointmentForm)
         }
         else{
             setAppointmentForm(prev => ({
@@ -133,7 +133,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

@@ -91,6 +91,19 @@ code {
   float: right;
 }
 
+/* Login/Signup */
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+}
+
+.login-form label {
+  display: block;
+  padding: 12px 0px;
+}
 
 /* Home */
 

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-function Login({setToken, setOwner, navigate}){
+function Login({setToken, setOwner, navigate, setPets, setAppointments}){
     const [loginForm, setLoginForm] = useState({
         email: '',
         password: ''
@@ -23,10 +24,17 @@ function Login({setToken, setOwner, navigate}){
         })
         .then(r => r.json())
         .then(data => {
-            setToken(data.access_token)
-            setOwner(data.owner)
-            localStorage.setItem('user', JSON.stringify(data.owner))
+            setToken(data.access_token);
+            setOwner(data.owner);
+            setPets(data.owner.pets);
+            localStorage.setItem('user', JSON.stringify(data.owner));
             // console.log(data.owner)
+            fetch(`http://localhost:8000/api/owners/${data.owner.id}/appointments`)
+            .then(res => res.json())
+            .then(data => {
+                setAppointments(data);
+                navigate('/dashboard');
+            })
         })
         
         setLoginForm(({
@@ -34,7 +42,6 @@ function Login({setToken, setOwner, navigate}){
             password: ''
         }))
 
-        navigate('/dashboard')
     }
 
     function handleChange(event) {
@@ -45,18 +52,24 @@ function Login({setToken, setOwner, navigate}){
     }
 
     return(
-        <div>
-            <h2>Login</h2>
-            <h2>Don't have an account? Sign up!</h2>
-            <form onSubmit={handleLogin}>
+        <div className="login-form">
+            <h2 className="center">Login</h2>
+            <h3 className="center">Don't have an account? <Link to='/signup'>Sign up!</Link></h3>
+            <form>
+                <div className="full-row">
                 <label>Email:
                     <input onChange={handleChange} type="email" name="email" text={loginForm.email} value={loginForm.email}/>
                 </label>
+                </div>
+                <div className="full-row">
                 <label>Password:
                     <input onChange={handleChange} type="password" name="password" text={loginForm.password} value={loginForm.password}/>
                 </label>
-                <input type="submit" value="Submit" />
+                </div>
             </form>
+            <div className="button-container">
+                <button onClick={handleLogin} className="card-button">Login</button>
+            </div>
             <Outlet />
         </div>
     )

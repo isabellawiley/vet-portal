@@ -8,11 +8,11 @@ function EditOwnerModal({owner}){
         lname: lname,
         email: email
     })
-    console.log('before:', ownerForm)
+    // console.log('before:', ownerForm)
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(ownerForm)
+        // console.log(ownerForm)
 
         fetch(`http://localhost:8000/api/owners/${id}`, {
             method: 'PUT',
@@ -29,7 +29,7 @@ function EditOwnerModal({owner}){
         })
         .then(res => res.json())
         .then(owner => {
-            console.log(owner)
+            // console.log(owner)
             setShowModal(false)
             setOwnerForm({
                 fname: owner.fname,
@@ -41,7 +41,7 @@ function EditOwnerModal({owner}){
 
     function handleChange(event){
         const {value, name} = event.target;
-        console.log('name: ', name, 'value:', value)
+        // console.log('name: ', name, 'value:', value)
         setOwnerForm(prev => ({
             ...prev, [name]: value
         }))

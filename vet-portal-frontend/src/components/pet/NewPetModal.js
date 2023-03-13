@@ -119,7 +119,7 @@ function NewPetModal({owner_id}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

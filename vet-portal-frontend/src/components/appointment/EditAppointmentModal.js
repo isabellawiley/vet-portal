@@ -10,12 +10,12 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
         date: date,
         time: time
     })
-    console.log('before:',appointmentForm)
+    // console.log('before:',appointmentForm)
     let allAppt = appointments;
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(appointmentForm.date + "T" + appointmentForm.time)
+        // console.log(appointmentForm.date + "T" + appointmentForm.time)
 
         fetch(`http://localhost:8000/api/appointments/${id}`, {
             method: 'PUT',
@@ -50,12 +50,12 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
 
     function handleChange(event) {
         const {value, name} = event.target;
-        console.log(value, typeof value)
+        // console.log(value, typeof value)
         if(name == 'vet_id' || name == 'pet_id'){
             setAppointmentForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }));
-            console.log('hi')
+            // console.log('hi')
         }
         else{
             setAppointmentForm(prev => ({
@@ -135,7 +135,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={handleSubmit}>Save</button>
                         <DeleteAppointment id={id} setShowModal={setShowModal}/>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ function EditPetModal({pet}){
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(petForm)
+        // console.log(petForm)
 
         fetch(`http://localhost:8000/api/pets/${pet.id}`, {
             method: 'PUT',
@@ -33,7 +33,7 @@ function EditPetModal({pet}){
         })
         .then(res => res.json())
         .then(pet => {
-            console.log(pet)
+            // console.log(pet)
             setShowModal(false)
         })
     }

@@ -3,7 +3,7 @@ import EditPetModal from './EditPetModal';
 
 function PetCard({pet}) {
     const {name, species, breed, age, image} = pet;
-    console.log('image:',image)
+    // console.log('image:',image)
 
     return(
         <div className="pet-card">

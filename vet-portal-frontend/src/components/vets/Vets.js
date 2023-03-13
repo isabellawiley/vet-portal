@@ -1,24 +1,31 @@
+import { useEffect } from "react";
 import VetCard from "./VetCard";
 
 
-function Vets({vets}){
+function Vets({vets, setVets}){
+
+    useEffect(() => {
+        fetch('http://localhost:8000/api/vets')
+        .then(res => res.json())
+        .then(data => setVets(data))
+    })
 
     window.addEventListener('scroll', () => {
         let vets = document.querySelectorAll('.vet-card');
         // console.log(vets[2])
 
-        vets.forEach(vet => {
-            let slideAt = (window.scrollY + window.innerHeight) - vet.clientHeight/2;
+        for(let i = 1; i < vets.length; i++){
+            let slideAt = (window.scrollY + window.innerHeight) - vets[i].clientHeight/2;
             // console.log(slideAt)
-            let isHalfShown = slideAt > vet.getBoundingClientRect().top;
+            let isHalfShown = slideAt > vets[i].getBoundingClientRect().top;
             // console.log(isHalfShown)
             if(isHalfShown){
-                vet.classList.add('slide');
+                vets[i].classList.add('slide');
             }
             else{
-                vet.classList.remove('slide');
+                vets[i].classList.remove('slide');
             }
-        })
+        }
     }, false);
 
     return(

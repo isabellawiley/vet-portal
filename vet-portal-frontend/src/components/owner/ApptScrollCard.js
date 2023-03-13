@@ -5,7 +5,7 @@ function ApptScrollCard({appt, pets, vets}){
     // let dateTimeArr = date.split("T");
     let pet = pets.find(pet => pet.id == appt.pet_id);
     let vet = vets.find(vet => vet.id == appt.vet_id);
-    console.log(strDate)
+    // console.log(strDate)
 
     return(
         <div>

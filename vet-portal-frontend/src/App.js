@@ -9,9 +9,11 @@ import Navbar from './components/Navbar';
 import Appointments from './components/appointment/Appointments';
 import Vets from './components/vets/Vets';
 import Home from './components/Home';
+import Signup from './components/owner/Signup';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
-  const [owner, setOwner] = useState({});
+  const [owner, setOwner] = useState(null);
   const [pets, setPets] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [vets, setVets] = useState([]);
@@ -43,29 +45,43 @@ function App() {
     
   }, []);
 
-  // console.log("owner: ", owner)
+  console.log("owner: ", owner)
   // console.log("token: ", token)
-  // console.log("vets: ", vets)
+  console.log("pets: ", pets)
 
   return (
     <div className="App">
-      <Navbar removeToken={removeToken} setOwner={setOwner}/>
+      <Navbar removeToken={removeToken} setOwner={setOwner} owner={owner} setPets={setPets} setAppointments={setAppointments}/>
       {/* {owner ? <h1>Welcome {owner.fname}!</h1> : <h1>Welcome to Pet Portal</h1>} */}
-      {!token && token!=="" &&token!== undefined && !owner ? (
-        <Routes>
-          <Route path='/login' element={<Login setToken={setToken} setOwner={setOwner} navigate={navigate}/>} />
-        </Routes>
-      ): (
+      {/* {!token && token!=="" &&token!== undefined && !owner ? (
+        <div className='page'>
+          <Routes>
+          </Routes>
+        </div>
+      ): ( */}
         <div className='page'>
           <Routes>
             <Route path='/' element={<Home />}/>
-            <Route path='/dashboard' element={<Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>}/>
-            <Route path='/my-pets' element={<Pets pets={pets} owner_id={owner.id} />} />
-            <Route path='/my-appointments' element={<Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>} />
-            <Route path='/vets' element={<Vets vets={vets}/>} />
+            <Route path='/login' element={<Login setToken={setToken} setOwner={setOwner} navigate={navigate} setPets={setPets} setAppointments={setAppointments}/>} />
+            <Route path='/signup' element={<Signup setToken={setToken} setOwner={setOwner} navigate={navigate} />} />
+            <Route path='/dashboard' element={
+              <ProtectedRoute user={owner} token={token}>
+                <Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>
+              </ProtectedRoute>}/>
+            <Route path='/my-pets' element={
+              <ProtectedRoute user={owner} token={token}>
+                <Pets pets={pets} owner={owner} />
+              </ProtectedRoute>
+            } />
+            <Route path='/my-appointments' element={
+              <ProtectedRoute user={owner} token={token}>
+                <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>            
+              </ProtectedRoute>
+            } />
+            <Route path='/vets' element={<Vets vets={vets} setVets={setVets}/>}/>
           </Routes>
         </div>
-      )}
+      {/* )} */}
           
       
     </div>

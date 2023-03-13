@@ -1,6 +1,7 @@
 import image1 from '../images/vet-portal-img.jpg';
 import image2 from '../images/vet-portal-img2.jpg';
 import allServices from '../assets/servicesData.json';
+import { Outlet } from 'react-router-dom';
 
 function Home({}){
 
@@ -70,6 +71,7 @@ function Home({}){
                     })}
                 </div>
             </div>
+            <Outlet />
         </div>
     )
 }

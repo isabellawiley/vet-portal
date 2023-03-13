@@ -19,21 +19,22 @@
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: 3s all ease-out;
+    transition: 2s all ease-out;
     transform: translateX(100%);
-    /* animation: vetcard 3s ease-out;
-    animation-delay: calc(var(--scroll)*-1s); */
 }
 
-/* @keyframes vetcard {
-    from {
-        transform: translateX(100%);
-    }
+.first-slide {
+    animation: firstslide 2s ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
 
+@keyframes firstslide {
     to {
         transform: translateX(0%);
+        opacity: 1;
     }
-} */
+}
 
 .vet-card.slide {
     transform: translateX(0%);
@@ -43,22 +44,9 @@
 .reverse {
     flex-direction: row-reverse;
     transform: translateX(-100%);
-    /* animation: reversecard 3s ease-out;
-    animation-delay: calc(var(--scroll)*-1s); */
 }
 
-/* @keyframes reversecard {
-    from {
-        transform: translateX(-100%);
-    }
-
-    to {
-        transform: translateX(0%);
-    }
-} */
-
 .vet-image {
-    /* flex-basis: 40%; */
     width: 250px;
     height: 250px;
 }
@@ -72,7 +60,6 @@
 
 .vet-info {
     padding: 5px;
-    /* flex-basis: 60%; */
     width: 45%;
 }
 

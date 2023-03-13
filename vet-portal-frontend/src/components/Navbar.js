@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import logo from "../../public/vet.png";
 import "../styling/navbar.css";
 
-function Navbar({removeToken, setOwner}){
+function Navbar({removeToken, setOwner, owner, setPets, setAppointments}){
     const [isActive, setIsActive] = useState(false);
     const navigate = useNavigate();
 
@@ -14,7 +14,10 @@ function Navbar({removeToken, setOwner}){
         .then(r => r.json())
         .then(data => {
             removeToken();
-            setOwner(null)
+            setOwner(null);
+            setAppointments([]);
+            setPets([]);
+            localStorage.removeItem('user');
             navigate('/login')
         })
     }
@@ -35,6 +38,9 @@ function Navbar({removeToken, setOwner}){
                         <Link to='/'>Home</Link>
                     </li>
                     <li>
+                        <Link to='/vets'>Vets</Link>
+                    </li>
+                    <li>
                         <Link to='/dashboard'>Dashboard</Link>
                     </li>
                     <li>
@@ -43,11 +49,12 @@ function Navbar({removeToken, setOwner}){
                     <li>
                         <Link to='/my-appointments'>My Appointments</Link>
                     </li>
-                    <li>
-                        <Link to='/vets'>Vets</Link>
-                    </li>
-                    <li>
+                    <li className="nav-right">
+                        {owner ? 
                         <button className="nav-button" onClick={logout}>Logout</button>
+                        : 
+                        <button className="nav-button" onClick={() => navigate('/login')}>Login</button>
+                        }
                     </li>
                 </ul>
             </nav>

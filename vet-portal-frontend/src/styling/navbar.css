@@ -65,12 +65,18 @@ header li a {
     text-decoration: none;
 }
 
+.nav-right {
+    position: absolute;
+    right: 2%;
+}
+
 .nav-button {
     background-color: transparent;
     border: none;
     font: inherit;
     cursor: pointer;
     padding: 0;
+    color: white;
 }
 
 input[type=checkbox]{
@@ -146,5 +152,10 @@ input[type=checkbox]{
 
     .menu.expanded li {
         background-color: rgb(102, 135, 197);
+    }
+
+    .nav-right {
+        position: relative;
+        right: inherit;
     }
 }

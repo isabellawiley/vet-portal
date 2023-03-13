@@ -27,7 +27,7 @@ function Appointments({setAppointments, appointments, pets, vets}){
                 {upcoming.map((apt) => {
                     let pet = pets.find(pet => pet.id == apt.pet_id)
                     let vet = vets.find(vet => vet.id == apt.vet_id)
-                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} reason={apt.reason}/></li>)
+                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} reason={apt.reason} upcoming={true}/></li>)
                 })}
             </div>
             <h2 className="subtitle">Past</h2>
@@ -35,7 +35,7 @@ function Appointments({setAppointments, appointments, pets, vets}){
                 {past.map((apt) => {
                     let pet = pets.find(pet => pet.id == apt.pet_id)
                     let vet = vets.find(vet => vet.id == apt.vet_id)
-                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} reason={apt.reason} /></li>)
+                    return(<li key={apt.id}><AppointmentCard id={apt.id} date={apt.date} pet={pet} vet={vet} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} reason={apt.reason} upcoming={false} /></li>)
                 })}
             </div>
         </div>

@@ -58,6 +58,8 @@ li {
     width: 80%;
     border-radius: 25px;
     box-sizing: border-box;
+    height: 80vh;
+    overflow-y: scroll;
 }
 
 .close {

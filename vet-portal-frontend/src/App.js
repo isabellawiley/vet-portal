@@ -45,9 +45,9 @@ function App() {
     
   }, []);
 
-  console.log("owner: ", owner)
+  // console.log("owner: ", owner)
   // console.log("token: ", token)
-  console.log("pets: ", pets)
+  // console.log("pets: ", pets)
 
   return (
     <div className="App">

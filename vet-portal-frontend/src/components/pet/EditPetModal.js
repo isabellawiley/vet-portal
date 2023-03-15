@@ -5,6 +5,8 @@ import DeletePet from "./DeletePet";
 function EditPetModal({pet}){
     const {name, image, species, breed, age} = pet;
     const [showModal, setShowModal] = useState(false);
+    const [petImage, setPetImage] = useState(pet.image);
+    const [imageChange, setImageChange] = useState(false);
     const [petForm ,setPetForm] = useState({
         name: name,
         image: image,
@@ -13,7 +15,32 @@ function EditPetModal({pet}){
         age: age
     })
 
-    function handleSubmit(event){
+    const uploadImage = async e => {
+        if(imageChange){
+            const data = new FormData();
+            data.append('file', petForm.image);
+            data.append('upload_preset' , 'vet-portal');
+            // console.log('data',data);
+    
+            const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
+                method: "POST",
+                body: data
+            })
+    
+            const file = await res.json();
+            // console.log('file',file);
+    
+            let imgUrl = file.secure_url;
+            handleSubmit(e, imgUrl);
+        }
+        else{
+            let imgUrl = petForm.image;
+            handleSubmit(e, imgUrl);
+        }
+
+    }
+
+    function handleSubmit(event, imgUrl){
         event.preventDefault();
         // console.log(petForm)
 
@@ -25,7 +52,7 @@ function EditPetModal({pet}){
             },
             body: JSON.stringify({
                 name: petForm.name,
-                image: petForm.image,
+                image: imgUrl,
                 species: petForm.species,
                 breed: petForm.breed,
                 age: petForm.age
@@ -52,6 +79,17 @@ function EditPetModal({pet}){
         }        
     }
 
+    function handleImageChange(event){
+        const {files, name} = event.target;
+        setPetForm(prev => ({
+            ...prev, [name]: files[0]
+        }))
+        setPetImage(URL.createObjectURL(event.target.files[0]));
+        // console.log(petForm)
+        // console.log(petImage);
+        setImageChange(true);
+    }
+
     return(
         <div>
             <button className="edit card-button" onClick={() => setShowModal(true)}>Edit</button>
@@ -59,33 +97,6 @@ function EditPetModal({pet}){
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
                     <h3 className="modal-title">Edit Pet</h3>
-                    {/* <form>
-                        <label>Name: </label>
-                        <input onChange={handleChange} type='string' name='name' value={petForm.name}/>
-                        <label>Image:</label>
-                        <input onChange={handleChange} type="string" name="image"/>
-                        <label>Species: </label>
-                            <div className="full-col">
-                                <select onChange={handleChange} value={petForm.species} name='species'>
-                                    <option value='' disabled>Choose Pet Species</option>
-                                    <option value='dog'>Dog</option>
-                                    <option value='cat'>Cat</option>
-                                    <option value='bird'>Bird</option>
-                                    <option value='reptile'>Reptile</option>
-                                    <option value='rabit'>Rabit</option>
-                                    <option value='other'>Other</option>
-                                </select>
-                            </div>
-                        <label>Breed: </label>
-                        <input onChange={handleChange} type='string' name="breed" value={petForm.breed}/>
-                        <label>Age: </label>
-                        <input onChange={handleChange} type='integer' name="age" value={petForm.age}/> */}
-                        {/* if input value is null set '' */}
-                    {/* </form> */}
-
-
-
-                    
                     <form>
                         <div className="row-container">
                             <div className="row left">
@@ -101,7 +112,9 @@ function EditPetModal({pet}){
                                     <label>Image:</label>
                                 </div>
                                 <div className="col">
-                                    <input onChange={handleChange} type="string" name="image" value={petForm.image}/>
+                                    {/* <input onChange={handleChange} type="string" name="image" value={petForm.image}/> */}
+                                    <input onChange={handleImageChange} type="file" name="image"/>
+                                    <img id='uploadedImage' src={petImage} style={{width: '200px', height: '200px', objectFit: 'cover'}}/>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +154,7 @@ function EditPetModal({pet}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={uploadImage}>Save</button>
                         <DeletePet id={pet.id} setShowModal={setShowModal} />
                     </div>
                 </div>

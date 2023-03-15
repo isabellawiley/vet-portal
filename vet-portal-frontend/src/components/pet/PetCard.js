@@ -11,7 +11,11 @@ function PetCard({pet}) {
             <img src={image} alt='pet'/>} */}
             {/* <img src={(image=="" || image==null) ? "https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" : image} alt="pet"/> */}
             <div className='meta'>
+                {image ? 
+                <div className='pet-photo' style={{backgroundImage: `url(${image})`}} ></div>
+                :
                 <div className='pet-photo' style={{backgroundImage: 'url(https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80)'}}></div>
+                }
             </div>
             <div className='pet-details'>
                 <h1>{name}</h1>

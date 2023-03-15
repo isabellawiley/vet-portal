@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function NewPetModal({owner_id}){
     const [showModal, setShowModal] = useState(false);
+    const [petImage, setPetImage] = useState('');
     const [petForm, setPetForm] = useState({
         name: "",
         image: "",
@@ -10,8 +11,29 @@ function NewPetModal({owner_id}){
         age: 0
     })
 
-    function handleSubmit(event){
+    const uploadImage = async e => {
+        const data = new FormData();
+        data.append('file', petForm.image);
+        data.append('upload_preset' , 'vet-portal');
+        console.log('data',data);
+
+        const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
+            method: "POST",
+            body: data
+        })
+
+        const file = await res.json();
+        console.log('file',file);
+
+        let imgUrl = file.secure_url;
+
+        handleSubmit(e, imgUrl);
+    }
+
+    function handleSubmit(event, imgUrl){
         event.preventDefault();
+        // let imgUrl = uploadImage();
+        console.log('url', imgUrl);
 
         fetch('http://localhost:8000/api/pets', {
             method: 'POST',
@@ -24,12 +46,13 @@ function NewPetModal({owner_id}){
                 name: petForm.name,
                 owner_id: owner_id,
                 species: petForm.species,
-                age: petForm.age
+                age: petForm.age,
+                image: imgUrl
             })
         })
         .then(res => res.json())
         .then(newPet => {
-            console.log(newPet);
+            console.log('new pet',newPet);
         })
 
         setPetForm({
@@ -55,6 +78,17 @@ function NewPetModal({owner_id}){
                 ...prev, [name]: value
             }))
         }  
+        console.log(petForm)
+    }
+
+    function handleImageChange(event){
+        const {files, name} = event.target;
+        setPetForm(prev => ({
+            ...prev, [name]: files[0]
+        }))
+        setPetImage(URL.createObjectURL(event.target.files[0]));
+        console.log(petForm)
+        console.log(petImage);
     }
 
     return(
@@ -79,7 +113,8 @@ function NewPetModal({owner_id}){
                                     <label>Image:</label>
                                 </div>
                                 <div className="col">
-                                    <input onChange={handleChange} type="string" name="image"/>
+                                    <input onChange={handleImageChange} type="file" name="image"/>
+                                    <img id='uploadedImage' src={petImage} style={{width: '200px', height: '200px', objectFit: 'cover'}}/>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +154,7 @@ function NewPetModal({owner_id}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={uploadImage}>Save</button>
                     </div>
                 </div>
             </div>

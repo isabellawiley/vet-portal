@@ -35,17 +35,17 @@ function App() {
       fetch(`http://localhost:8000/api/owners/${user.id}/appointments`)
         .then(res => res.json())
         .then(data => setAppointments(data))
+      }
+      else {
+        navigate('/')
+      }
       fetch('http://localhost:8000/api/vets')
         .then(res => res.json())
         .then(data => setVets(data))
-    }
-    else {
-      navigate('/login')
-    }
     
   }, []);
 
-  // console.log("owner: ", owner)
+  console.log("owner: ", owner)
   // console.log("token: ", token)
   // console.log("pets: ", pets)
 
@@ -78,7 +78,7 @@ function App() {
                 <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>            
               </ProtectedRoute>
             } />
-            <Route path='/vets' element={<Vets vets={vets} setVets={setVets}/>}/>
+            <Route path='/vets' element={<Vets vets={vets}/>}/>
           </Routes>
         </div>
       {/* )} */}

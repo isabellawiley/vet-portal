@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import VetCard from "./VetCard";
 
 
-function Vets({vets, setVets}){
+function Vets({vets}){
 
-    useEffect(() => {
-        fetch('http://localhost:8000/api/vets')
-        .then(res => res.json())
-        .then(data => setVets(data))
-    })
+    // useEffect(() => {
+    //     fetch('http://localhost:8000/api/vets')
+    //     .then(res => res.json())
+    //     .then(data => setVets(data))
+    // })
 
     window.addEventListener('scroll', () => {
         let vets = document.querySelectorAll('.vet-card');

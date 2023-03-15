@@ -6,16 +6,20 @@ function AppointmentCard({id, date, pet, pets, vet, vets, appointments, setAppoi
     let dateTimeArr = date.split("T");
     
     return(
-        <div className="apt-card">
-            <h3>{pet.name}</h3>
-            <p>{reason}</p>
-            <p>{strDate[0]} {strDate[1]}</p>
-            <p>{vet.name}</p> 
-            {upcoming ? 
-            <EditAppointmentModal id={id} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} pet_id={pet.id} vet_id={vet.id} date={dateTimeArr[0]} time={dateTimeArr[1]} reason={reason}/>
-            :
-            <div></div>
-            }
+        <div>
+            {id && date && pet && pets && vet && vets && appointments && reason ? 
+                <div className="apt-card">
+                    <h3>{pet.name}</h3>
+                    <p>{reason}</p>
+                    <p>{strDate[0]} {strDate[1]}</p>
+                    <p>{vet.name}</p> 
+                    {upcoming ? 
+                    <EditAppointmentModal id={id} vets={vets} pets={pets} appointments={appointments} setAppointments={setAppointments} pet_id={pet.id} vet_id={vet.id} date={dateTimeArr[0]} time={dateTimeArr[1]} reason={reason}/>
+                    :
+                    <div></div>
+                    }
+                </div>
+            : <div></div>}
         </div>
     )
 }

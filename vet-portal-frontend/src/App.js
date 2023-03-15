@@ -11,6 +11,7 @@ import Vets from './components/vets/Vets';
 import Home from './components/Home';
 import Signup from './components/owner/Signup';
 import ProtectedRoute from './ProtectedRoute';
+import LoadingPage from './components/LoadingPage';
 
 function App() {
   const [owner, setOwner] = useState(null);
@@ -45,7 +46,7 @@ function App() {
     
   }, []);
 
-  console.log("owner: ", owner)
+  // console.log("owner: ", owner)
   // console.log("token: ", token)
   // console.log("pets: ", pets)
 
@@ -66,16 +67,28 @@ function App() {
             <Route path='/signup' element={<Signup setToken={setToken} setOwner={setOwner} navigate={navigate} />} />
             <Route path='/dashboard' element={
               <ProtectedRoute user={owner} token={token}>
-                <Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>
+                {owner && pets && appointments && vets ? 
+                  <Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>
+                :
+                  <LoadingPage />
+                }
               </ProtectedRoute>}/>
             <Route path='/my-pets' element={
               <ProtectedRoute user={owner} token={token}>
-                <Pets pets={pets} owner={owner} />
+                {owner && pets ?
+                  <Pets pets={pets} owner={owner} />
+                :
+                  <LoadingPage />
+                }
               </ProtectedRoute>
             } />
             <Route path='/my-appointments' element={
               <ProtectedRoute user={owner} token={token}>
-                <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>            
+                {appointments && pets && vets ?
+                  <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>  
+                :
+                  <LoadingPage />   
+                }
               </ProtectedRoute>
             } />
             <Route path='/vets' element={<Vets vets={vets}/>}/>

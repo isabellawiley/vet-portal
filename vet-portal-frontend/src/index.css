@@ -29,9 +29,62 @@ code {
   margin: 30px;
 }
 
-/* #pets {
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(102, 135, 197);
+  height: 16vh;
+  display: grid;
+  grid-template-areas: 'info info icons';
+  grid-template-columns: [info] 30% [info] 40% [icons] 30%;
+  box-shadow: 0 0 3px 0 black;
+}
+
+.footer-info {
+  grid-area: info;
   display: flex;
-} */
+  flex-direction: column;
+  align-items: center;
+  grid-column-start: 2;
+  justify-content: center;
+}
+
+.footer-column{
+  display: flex;
+  align-items: center;
+}
+
+.footer-column p {
+  margin: 0;
+}
+
+.icon-container {
+  grid-area: icons;
+  position: relative;
+  right: 5%;
+  align-self: center;
+}
+
+.location {
+  height: 20px;
+}
+
+.phone {
+  height: 14px;
+  margin-right: 5px;
+}
+
+.clock {
+  height: 17px;
+  margin-right: 5px;
+}
+
+.icon {
+  height: 30px;
+  float: right;
+}
 
 .card-button {
   border: none;

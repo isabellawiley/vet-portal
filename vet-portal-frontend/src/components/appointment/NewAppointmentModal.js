@@ -9,7 +9,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
         date: '',
         time: ''
     })
-    let allAppt = appointments;
+    // let allAppt = appointments;
 
     function handleSubmit(event){
         event.preventDefault();
@@ -29,8 +29,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
         })
         .then(res => res.json())
         .then((appt => {
-            allAppt.push(appt);
-            setAppointments(allAppt);
+            setAppointments([...appointments, appt]);
         }))
 
         setAppointmentForm(({

@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Signup from './components/owner/Signup';
 import ProtectedRoute from './ProtectedRoute';
 import LoadingPage from './components/LoadingPage';
+import Footer from './Footer';
 
 function App() {
   const [owner, setOwner] = useState(null);
@@ -53,13 +54,6 @@ function App() {
   return (
     <div className="App">
       <Navbar removeToken={removeToken} setOwner={setOwner} owner={owner} setPets={setPets} setAppointments={setAppointments}/>
-      {/* {owner ? <h1>Welcome {owner.fname}!</h1> : <h1>Welcome to Pet Portal</h1>} */}
-      {/* {!token && token!=="" &&token!== undefined && !owner ? (
-        <div className='page'>
-          <Routes>
-          </Routes>
-        </div>
-      ): ( */}
         <div className='page'>
           <Routes>
             <Route path='/' element={<Home />}/>
@@ -93,10 +87,8 @@ function App() {
             } />
             <Route path='/vets' element={<Vets vets={vets}/>}/>
           </Routes>
+          <Footer />
         </div>
-      {/* )} */}
-          
-      
     </div>
   );
 }

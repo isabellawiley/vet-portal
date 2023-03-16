@@ -2,10 +2,10 @@ import { useState } from "react";
 
 function NewPetModal({owner_id}){
     const [showModal, setShowModal] = useState(false);
-    const [petImage, setPetImage] = useState('');
+    const [petImage, setPetImage] = useState('https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
     const [petForm, setPetForm] = useState({
         name: "",
-        image: "",
+        image: "https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
         species: "",
         breed: "",
         age: 0
@@ -87,15 +87,16 @@ function NewPetModal({owner_id}){
             ...prev, [name]: files[0]
         }))
         setPetImage(URL.createObjectURL(event.target.files[0]));
-        console.log(petForm)
-        console.log(petImage);
+        // console.log(petForm)
+        // console.log(petImage);
     }
 
     return(
         <div>
             <button className="new card-button" onClick={() => setShowModal(true)}>Create New Pet</button>
             <div className={showModal ? "modal show" : "modal"}>
-                <div className="modal-content">
+                <div className="modal-content-container">
+                    <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
                     <h3 className="modal-title">New Pet</h3>
                     <form>
@@ -114,15 +115,16 @@ function NewPetModal({owner_id}){
                                 </div>
                                 <div className="col">
                                     <input onChange={handleImageChange} type="file" name="image"/>
-                                    <img id='uploadedImage' src={petImage} style={{width: '200px', height: '200px', objectFit: 'cover'}}/>
+                                    <img id='uploadedImage' src={petImage}/>
                                 </div>
                             </div>
                         </div>
-                        <div className="full-row">
+                        <div className="row-container">
+                            <div className="row left">
                             <div className="col">
                                 <label>Species:</label>
                             </div>
-                            <div className="full-col">
+                            <div className="col">
                                 <select onChange={handleChange} value={petForm.species} name='species'>
                                     <option value='' disabled>Choose Pet Species</option>
                                     <option value='dog'>Dog</option>
@@ -133,9 +135,8 @@ function NewPetModal({owner_id}){
                                     <option value='other'>Other</option>
                                 </select>
                             </div>
-                        </div>
-                        <div className="row-container">
-                            <div className="row left">
+                            </div>
+                            <div className="row right">
                                 <div className="col">
                                     <label>Breed:</label>
                                 </div>
@@ -143,7 +144,9 @@ function NewPetModal({owner_id}){
                                     <input onChange={handleChange} type="string" name="breed"/>
                                 </div>
                             </div>
-                            <div className="row right">
+                        </div>
+                        <div className="row-container">
+                            <div className="row left">
                                 <div className="col">
                         <           label>Age:</label>
                                 </div>
@@ -155,6 +158,7 @@ function NewPetModal({owner_id}){
                     </form>
                     <div className="button-container">
                         <button className="card-button" onClick={uploadImage}>Save</button>
+                    </div>
                     </div>
                 </div>
             </div>

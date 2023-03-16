@@ -134,14 +134,16 @@ code {
   padding: 10px;
   margin: 1% auto;
   width: 90%;
+  clear: both;
+  overflow: auto;
 }
 
 .button-container .card-button {
-  float: left;
+  float: right;
 }
 
 .button-container .delete-button{
-  float: right;
+  float: left;
 }
 
 /* Login/Signup */

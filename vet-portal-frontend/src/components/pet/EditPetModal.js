@@ -94,6 +94,7 @@ function EditPetModal({pet}){
         <div>
             <button className="edit card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? 'modal show' : 'modal'}>
+                <div className="modal-content-container">
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
                     <h3 className="modal-title">Edit Pet</h3>
@@ -114,15 +115,16 @@ function EditPetModal({pet}){
                                 <div className="col">
                                     {/* <input onChange={handleChange} type="string" name="image" value={petForm.image}/> */}
                                     <input onChange={handleImageChange} type="file" name="image"/>
-                                    <img id='uploadedImage' src={petImage} style={{width: '200px', height: '200px', objectFit: 'cover'}}/>
+                                    <img id='uploadedImage' src={petImage}/>
                                 </div>
                             </div>
                         </div>
-                        <div className="full-row">
+                        <div className="row-container">
+                            <div className="row left">
                             <div className="col">
                                 <label>Species:</label>
                             </div>
-                            <div className="full-col">
+                            <div className="col">
                                 <select onChange={handleChange} value={petForm.species} name='species'>
                                     <option value='' disabled>Choose Pet Species</option>
                                     <option value='dog'>Dog</option>
@@ -133,9 +135,8 @@ function EditPetModal({pet}){
                                     <option value='other'>Other</option>
                                 </select>
                             </div>
-                        </div>
-                        <div className="row-container">
-                            <div className="row left">
+                            </div>
+                            <div className="row right">
                                 <div className="col">
                                     <label>Breed:</label>
                                 </div>
@@ -143,7 +144,9 @@ function EditPetModal({pet}){
                                     <input onChange={handleChange} type="string" name="breed" value={petForm.breed}/>
                                 </div>
                             </div>
-                            <div className="row right">
+                        </div>
+                        <div className="row-container">
+                            <div className="row left">
                                 <div className="col">
                         <           label>Age:</label>
                                 </div>
@@ -157,6 +160,7 @@ function EditPetModal({pet}){
                         <button className="card-button" onClick={uploadImage}>Save</button>
                         <DeletePet id={pet.id} setShowModal={setShowModal} />
                     </div>
+                </div>
                 </div>
             </div>
         </div>

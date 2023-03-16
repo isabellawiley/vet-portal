@@ -62,6 +62,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
         <div>
             <button className="card-button" onClick={() => setShowNewModal(true)}>New Appointment</button>
             <div className={showNewModal ? "modal show" : "modal"}>
+                <div className="modal-content-container">
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowNewModal(false)}>&times;</span>
                     <h3 className="modal-title">New Appointment</h3>
@@ -134,6 +135,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments}){
                     <div className="button-container">
                         <button className="card-button" onClick={handleSubmit}>Save</button>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

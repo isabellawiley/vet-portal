@@ -41,9 +41,9 @@ function Home({}){
             <div className='contact reveal'>
                 <div className='blurb-text'>
                     <h2 className='blurb-title'>Contact Us</h2>
-                    <p>555 Joe Momma's House</p>
+                    <p>123 Somewhere Dr, Duloc</p>
                     <p>555-555-5555</p>
-                    <p>Monday-Saturday 9am-6pm</p>
+                    <p>9am-6pm, Monday-Saturday</p>
                 </div>
                 <div className='blurb-image'>
                     <img src={image2} alt='vet2'/>

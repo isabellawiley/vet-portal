@@ -68,7 +68,8 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
         <div>
             <button className="card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? "modal show" : "modal"}>
-                <div className="modal-content">
+                <div className="modal-content-container">
+                    <div className="modal-content">
                     <span className="close" onClick={() => (setShowModal(false))}>&times;</span>
                     <h3 className="modal-title">Edit Appointment</h3>
                     <form>
@@ -137,6 +138,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                     <div className="button-container">
                         <button className="card-button" onClick={handleSubmit}>Save</button>
                         <DeleteAppointment id={id} setShowModal={setShowModal}/>
+                    </div>
                     </div>
                 </div>
             </div>

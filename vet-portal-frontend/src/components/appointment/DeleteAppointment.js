@@ -1,5 +1,5 @@
 
-function DeleteAppointment({id, setShowModal}) {
+function DeleteAppointment({id, setShowModal, appointments, setAppointments}) {
 
     function handleDelete(){
         if(window.confirm("Delete appointment?")){
@@ -12,6 +12,11 @@ function DeleteAppointment({id, setShowModal}) {
             // .then(res => res.json())
             .then(data => {
                 // console.log(data);
+                const updatedAppts = appointments.filter(appt => {
+                    return appt.id !== id;
+                })
+                console.log(updatedAppts)
+                setAppointments(updatedAppts);
                 setShowModal(false);
             })
         }

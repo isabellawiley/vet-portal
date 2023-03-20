@@ -5,7 +5,9 @@ from sqlalchemy.orm import backref
 class Appointment(db.Model):
     __tablename__ = "appointment"
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime)
+    date_time_start = db.Column(db.DateTime)
+    date_time_end = db.Column(db.DateTime)
+    time = db.Column(db.Integer)
     pet_id = db.Column(db.Integer, db.ForeignKey("pet.id"))
     vet_id = db.Column(db.Integer, db.ForeignKey("vet.id"))
     reason = db.Column(db.String)
@@ -31,7 +33,7 @@ class Pet(db.Model):
         backref=backref("pet", lazy="joined"),
         cascade="all, delete, delete-orphan",
         single_parent=True,
-        order_by="desc(Appointment.date)"
+        order_by="desc(Appointment.date_time_start)"
     )
 
 class PetSchema(ma.SQLAlchemyAutoSchema):
@@ -46,9 +48,9 @@ class PetSchema(ma.SQLAlchemyAutoSchema):
 class Owner(db.Model):
     __tablename__ = "owner"
     id = db.Column(db.Integer, primary_key=True)
-    fname = db.Column(db.String(32))
-    lname = db.Column(db.String(32))
-    email = db.Column(db.String(32), nullable=False)
+    fname = db.Column(db.String(32), nullable=False)
+    lname = db.Column(db.String(32), nullable=False)
+    email = db.Column(db.String(32), nullable=False, unique=True)
     password = db.Column(db.String(32), nullable=False)
     pets = db.relationship(
         Pet,
@@ -77,7 +79,7 @@ class Vet(db.Model):
         backref="vet",
         cascade="all, delete, delete-orphan",
         single_parent=True,
-        order_by="desc(Appointment.date)"
+        order_by="desc(Appointment.date_time_start)"
     )
 
 class VetSchema(ma.SQLAlchemyAutoSchema):

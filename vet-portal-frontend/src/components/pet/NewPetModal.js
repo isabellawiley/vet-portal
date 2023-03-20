@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function NewPetModal({owner_id}){
+function NewPetModal({owner_id, pets, setPets}){
     const [showModal, setShowModal] = useState(false);
     const [petImage, setPetImage] = useState('https://images.unsplash.com/photo-1606425271394-c3ca9aa1fc06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
     const [petForm, setPetForm] = useState({
@@ -53,6 +53,7 @@ function NewPetModal({owner_id}){
         .then(res => res.json())
         .then(newPet => {
             console.log('new pet',newPet);
+            setPets(...pets, newPet);
         })
 
         setPetForm({

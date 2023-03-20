@@ -15,7 +15,8 @@ function Signup({setToken, setOwner, navigate}) {
         fetch("http://localhost:8000/api/owners", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
                 email: signupForm.email,
@@ -24,8 +25,19 @@ function Signup({setToken, setOwner, navigate}) {
                 lname: signupForm.lname
             })
         })
-        .then(r => r.json())
+        .then(response => {
+            console.log('response:', response)
+            if(!response.ok){
+                console.log('in if')
+                throw Error(response.statusText);
+            }
+            else{
+                console.log('in else')
+                return response.json();
+            }
+        })
         .then(owner => {
+            console.log(owner)
             fetch("http://localhost:8000/token", {
                 method: "POST",
                 headers: {
@@ -45,6 +57,16 @@ function Signup({setToken, setOwner, navigate}) {
                 navigate('/dashboard');
             })
         })
+        .catch(error => {
+            console.log('error:', error);
+            document.querySelector('.danger').style.display = ('block');
+            setSignupForm({
+                email: '',
+                password: '',
+                fname: '',
+                lname: ''
+            })
+        })
     }
 
     function handleChange(event){
@@ -58,6 +80,9 @@ function Signup({setToken, setOwner, navigate}) {
         <div className="login-form">
             <h2 className="center">Sign Up</h2>
             <h3 className="center">Already have an account? <Link to='/login'>Login!</Link></h3>
+            <div className="danger">
+                <p>This email already has an account</p>
+            </div>
             <form>
                 <div className="full-row">
                     <label>First Name:</label>

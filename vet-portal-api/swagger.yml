@@ -354,8 +354,12 @@ paths:
                   type: "integer"
                 pet_id:
                   type: "integer"
-                date:
+                date_time_start:
                   type: "string"
+                date_time_end:
+                  type: "string"
+                time:
+                  type: "integer"
                 reason:
                   type: "string"
       responses:
@@ -393,8 +397,12 @@ paths:
                   type: "integer"
                 pet_id:
                   type: "integer"
-                date:
+                date_time_start:
                   type: "string"
+                date_time_end:
+                  type: "string"
+                time:
+                  type: "integer"
                 reason:
                   type: "string"
     delete:

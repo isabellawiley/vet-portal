@@ -70,7 +70,7 @@ function App() {
             <Route path='/my-pets' element={
               <ProtectedRoute user={owner} token={token}>
                 {owner && pets ?
-                  <Pets pets={pets} owner={owner} />
+                  <Pets pets={pets} owner={owner} setPets={setPets}/>
                 :
                   <LoadingPage />
                 }

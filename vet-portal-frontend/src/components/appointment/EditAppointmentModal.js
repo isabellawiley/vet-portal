@@ -1,21 +1,34 @@
 import { useState } from "react";
 import DeleteAppointment from "./DeleteAppointment";
+import apptData from "../../assets/appointmentData.json";
 
-function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pet_id, vet_id, date, time, reason}) {
+function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pet_id, vet_id, date_time_start, time_start, time, reason}) {
     const [showModal, setShowModal] = useState(false);
+    const [apptTimeLength, setApptTimeLength] = useState(time);
     const [appointmentForm, setAppointmentForm] = useState({
         pet_id: pet_id,
         vet_id: vet_id,
         reason: reason,
-        date: date,
-        time: time
+        time: time,
+        date_time_start: date_time_start,
+        time_start: time_start,
     })
-    // console.log('before:',appointmentForm)
-    let allAppt = appointments;
+
+    function getDateTimeEnd(start){
+        let timeArr = start.split(':');
+        let mins = timeArr[0]*60 + +timeArr[1];
+        let total = mins + apptTimeLength;
+        function convert(x){
+            return(x<10? '0':'') + x;
+        }
+        let hour = (total/60 | 0) % 24;
+        let min = total % 60;
+        let time = convert(hour) + ':' + convert(min);
+        return time;
+    }
 
     function handleSubmit(event){
         event.preventDefault();
-        // console.log(appointmentForm.date + "T" + appointmentForm.time)
 
         fetch(`http://localhost:8000/api/appointments/${id}`, {
             method: 'PUT',
@@ -24,7 +37,9 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                 'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({
-                date: appointmentForm.date + "T" + appointmentForm.time,
+                date_time_start: appointmentForm.date_time_start + 'T' + appointmentForm.time_start,
+                date_time_end: appointmentForm.date_time_start + 'T' + getDateTimeEnd(appointmentForm.time_start),
+                time: appointmentForm.time,
                 reason: appointmentForm.reason,
                 pet_id: appointmentForm.pet_id,
                 vet_id: appointmentForm.vet_id,
@@ -32,30 +47,29 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
         })
         .then(r => r.json())
         .then((appt) => {
-            let apptIndex = allAppt.find(appo => appo.id == id);
-            allAppt[apptIndex] = appt;
-            setAppointments(allAppt);
-        })
+            let apptObj = appointments.find(ap => ap.id == id);
+            let apptIndex = appointments.indexOf(apptObj);
+            appointments[apptIndex] = appt;
 
-        setAppointmentForm(({
-            pet_id: '',
-            vet_id: '',
-            reason: '',
-            date: '',
-            time: ''
-        }))
+            setAppointments([...appointments]);
+        })
 
         setShowModal(false);
     }
 
     function handleChange(event) {
         const {value, name} = event.target;
-        // console.log(value, typeof value)
         if(name == 'vet_id' || name == 'pet_id'){
             setAppointmentForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }));
-            // console.log('hi')
+        }
+        else if(name == 'reason'){
+            const time = apptData.find(appt => appt.name == value);
+            setApptTimeLength(time.time);
+            setAppointmentForm(prev => ({
+                ...prev, [name]: value
+            }));
         }
         else{
             setAppointmentForm(prev => ({
@@ -122,7 +136,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Date:</label>
                             </div>
                             <div className="col">
-                                <input onChange={handleChange} type="date" name="date" value={appointmentForm.date}/>
+                                <input onChange={handleChange} type="date" name="date_time_start" value={appointmentForm.date_time_start}/>
                             </div>
                         </div>
                         <div className="row right">
@@ -130,14 +144,14 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Time:</label>
                             </div>
                             <div className="col">
-                                <input onChange={handleChange} type="time" name="time" value={appointmentForm.time}/>
+                                <input onChange={handleChange} type="time" name="time_start" value={appointmentForm.time_start}/>
                             </div>
                         </div>
                         </div>
                     </form>
                     <div className="button-container">
                         <button className="card-button" onClick={handleSubmit}>Save</button>
-                        <DeleteAppointment id={id} setShowModal={setShowModal}/>
+                        <DeleteAppointment id={id} setShowModal={setShowModal} setAppointments={setAppointments} appointments={appointments}/>
                     </div>
                     </div>
                 </div>

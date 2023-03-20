@@ -20,7 +20,9 @@ def update(appointment_id, appointment):
 
     if existing_appointment:
         update_appointment = appointment_schema.load(appointment, session=db.session)
-        existing_appointment.date = update_appointment.date
+        existing_appointment.date_time_start = update_appointment.date_time_start
+        existing_appointment.date_time_end = update_appointment.date_time_end
+        existing_appointment.time = update_appointment.time
         existing_appointment.pet_id = update_appointment.pet_id
         existing_appointment.vet_id = update_appointment.vet_id
         existing_appointment.reason = update_appointment.reason

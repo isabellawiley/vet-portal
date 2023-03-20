@@ -50,6 +50,7 @@ def read_appointment_data(vet_id):
     vet_obj = vet_schema.dump(vet)
     appt_data = []
     for appt in vet_obj["appointments"]:
-        appt_data.append(appt["date"])
+        appt_data.append(appt["date_time_start"])
+        appt_data.append(appt["date_time_end"])
     
     return appt_data

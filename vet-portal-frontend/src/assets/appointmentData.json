@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Annual Physical Exam",
+        "time": 60
+    },
+    {
+        "name": "Dental Cleaning",
+        "time": 120
+    },
+    {
+        "name": "Grooming",
+        "time": 180
+    },
+    {
+        "name": "Nail Trim",
+        "time": 30
+    },
+    {
+        "name": "Sick Pet",
+        "time": 60
+    },
+    {
+        "name": "Vaccinations",
+        "time": 45
+    },
+    {
+        "name": "Microchipping",
+        "time": 30
+    },
+    {
+        "name": "Spay/Neuter",
+        "time": 240
+    }
+]

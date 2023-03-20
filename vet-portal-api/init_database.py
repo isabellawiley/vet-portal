@@ -18,7 +18,9 @@ OWNERS_PETS = [
                 "age": 3,
                 "appointments": [
                     {
-                        "date": "2022-01-07T08:00:00",
+                        "date_time_start": "2022-01-07 08:00:00",
+                        "date_time_end": "2022-01-07 09:00:00",
+                        "time": 60,
                         "vet": {
                             "name": "Dr. Rodriguez",
                             "image": "https://www.seekpng.com/png/detail/266-2666925_free-stock-medical-doctor-clipart-doctor-cartoon-girl.png",
@@ -36,7 +38,9 @@ OWNERS_PETS = [
                 "age": 3,
                 "appointments": [
                     {
-                        "date": "2022-02-08T12:00:00",
+                        "date_time_start": "2022-02-08 12:00:00",
+                        "date_time_end": "2022-02-08 14:00:00",
+                        "time": 120,
                         "vet": {
                             "name": "Dr. Bob",
                             "image": "https://static.vecteezy.com/system/resources/previews/005/520/145/original/cartoon-drawing-of-a-doctor-vector.jpg",
@@ -70,7 +74,9 @@ OWNERS_PETS = [
                 "age": 14,
                 "appointments": [
                     {
-                        "date": "2022-01-07T08:00:00",
+                        "date_time_start": "2022-01-07 08:00:00",
+                        "date_time_end": "2022-01-07 08:30:00",
+                        "time": 30,
                         "vet": {
                             "name": "Dr. Susan",
                             "image": "https://img.freepik.com/premium-vector/female-doctor-cartoon-character-white-background_1639-28810.jpg?w=2000",
@@ -139,7 +145,10 @@ def create_database(db):
             for appointment in pet["appointments"]:
                 new_pet.appointments.append(
                     Appointment(
-                        date=datetime.strptime(appointment["date"], "%Y-%m-%d %H:%M:%S"),
+                        date_time_start=datetime.strptime(appointment["date_time_start"], "%Y-%m-%d %H:%M:%S"),
+                        date_time_end=datetime.strptime(appointment["date_time_end"], "%Y-%m-%d %H:%M:%S"),
+                        time = appointment["time"],
+                        reason = appointment["reason"],
                         vet = Vet(
                             name=appointment["vet"]["name"],
                             image = appointment["vet"]["image"],

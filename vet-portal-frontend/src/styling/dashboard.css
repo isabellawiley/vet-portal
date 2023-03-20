@@ -23,6 +23,15 @@
     color: rgb(73, 96, 139);
 }
 
+.content-title.links {
+    text-decoration: underline rgb(73, 96, 139);
+}
+
+.content-title.links:hover, .content-title.links h2:hover {
+    text-decoration: underline rgb(54, 72, 104);
+    color: rgb(54, 72, 104);
+}
+
 .center {
     text-align: center;
 }

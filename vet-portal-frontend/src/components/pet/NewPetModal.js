@@ -15,7 +15,6 @@ function NewPetModal({owner_id, pets, setPets}){
         const data = new FormData();
         data.append('file', petForm.image);
         data.append('upload_preset' , 'vet-portal');
-        console.log('data',data);
 
         const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
             method: "POST",
@@ -23,17 +22,12 @@ function NewPetModal({owner_id, pets, setPets}){
         })
 
         const file = await res.json();
-        console.log('file',file);
-
         let imgUrl = file.secure_url;
-
         handleSubmit(e, imgUrl);
     }
 
     function handleSubmit(event, imgUrl){
         event.preventDefault();
-        // let imgUrl = uploadImage();
-        console.log('url', imgUrl);
 
         fetch('http://localhost:8000/api/pets', {
             method: 'POST',
@@ -52,7 +46,6 @@ function NewPetModal({owner_id, pets, setPets}){
         })
         .then(res => res.json())
         .then(newPet => {
-            console.log('new pet',newPet);
             setPets(...pets, newPet);
         })
 
@@ -79,7 +72,6 @@ function NewPetModal({owner_id, pets, setPets}){
                 ...prev, [name]: value
             }))
         }  
-        console.log(petForm)
     }
 
     function handleImageChange(event){
@@ -88,8 +80,6 @@ function NewPetModal({owner_id, pets, setPets}){
             ...prev, [name]: files[0]
         }))
         setPetImage(URL.createObjectURL(event.target.files[0]));
-        // console.log(petForm)
-        // console.log(petImage);
     }
 
     return(

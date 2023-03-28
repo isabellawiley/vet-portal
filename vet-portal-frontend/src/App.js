@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Dashboard from './components/owner/Dashboard';
-import {Routes, Route, Outlet, Link, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate} from "react-router-dom";
 import Pets from './components/pet/Pets';
 import Login from './components/owner/Login';
 import useToken from './components/owner/useToken';
-import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Appointments from './components/appointment/Appointments';
 import Vets from './components/vets/Vets';
@@ -25,7 +24,6 @@ function App() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = (localStorage.getItem("token"));
-    // console.log("user: ", user)
     if(user && token){
       fetch(`http://localhost:8000/api/owners/${user.id}`)
       .then(res => res.json())
@@ -47,10 +45,6 @@ function App() {
     
   }, []);
 
-  // console.log("owner: ", owner)
-  // console.log("token: ", token)
-  // console.log("pets: ", pets)
-
   return (
     <div className="App">
       <Navbar removeToken={removeToken} setOwner={setOwner} owner={owner} setPets={setPets} setAppointments={setAppointments}/>
@@ -62,7 +56,7 @@ function App() {
             <Route path='/dashboard' element={
               <ProtectedRoute user={owner} token={token}>
                 {owner && pets && appointments && vets ? 
-                  <Dashboard owner={owner} pets={pets} appointments={appointments} vets={vets}/>
+                  <Dashboard owner={owner} setOwner={setOwner} pets={pets} appointments={appointments} vets={vets}/>
                 :
                   <LoadingPage />
                 }
@@ -79,7 +73,7 @@ function App() {
             <Route path='/my-appointments' element={
               <ProtectedRoute user={owner} token={token}>
                 {appointments && pets && vets ?
-                  <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets}/>  
+                  <Appointments setAppointments={setAppointments} appointments={appointments} pets={pets} vets={vets} setVets={setVets}/>  
                 :
                   <LoadingPage />   
                 }

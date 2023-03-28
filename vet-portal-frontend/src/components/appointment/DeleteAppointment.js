@@ -1,9 +1,9 @@
 
-function DeleteAppointment({id, setShowModal, appointments, setAppointments}) {
+function DeleteAppointment({ apt, setShowModal, appointments, setAppointments, vets, setVets}) {
 
     function handleDelete(){
         if(window.confirm("Delete appointment?")){
-            fetch(`http://localhost:8000/api/appointments/${id}`, {
+            fetch(`http://localhost:8000/api/appointments/${apt.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*'
@@ -11,12 +11,19 @@ function DeleteAppointment({id, setShowModal, appointments, setAppointments}) {
             })
             // .then(res => res.json())
             .then(data => {
-                // console.log(data);
                 const updatedAppts = appointments.filter(appt => {
-                    return appt.id !== id;
+                    return appt.id !== apt.id;
                 })
-                console.log(updatedAppts)
                 setAppointments(updatedAppts);
+
+                let vet = vets.find(vet => vet.id === apt.vet_id);
+                let allVets = [...vets];
+                let aptInd = vet.appointments.indexOf(apt);
+                vet.appointments.splice(aptInd, 1);
+                let vetInd = allVets.indexOf(vet);
+                allVets[vetInd] = vet;
+                setVets([...allVets]);
+
                 setShowModal(false);
             })
         }

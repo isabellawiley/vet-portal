@@ -26,18 +26,14 @@ function Signup({setToken, setOwner, navigate}) {
             })
         })
         .then(response => {
-            console.log('response:', response)
             if(!response.ok){
-                console.log('in if')
                 throw Error(response.statusText);
             }
             else{
-                console.log('in else')
                 return response.json();
             }
         })
         .then(owner => {
-            console.log(owner)
             fetch("http://localhost:8000/token", {
                 method: "POST",
                 headers: {

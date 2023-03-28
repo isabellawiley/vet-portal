@@ -1,8 +1,9 @@
 import { useState } from "react";
 import DeleteAppointment from "./DeleteAppointment";
 import apptData from "../../assets/appointmentData.json";
+import FormTimeValidator from "./FormTimeValidator";
 
-function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pet_id, vet_id, date_time_start, time_start, time, reason}) {
+function EditAppointmentModal({apt, id, vets, pets, appointments, setAppointments, pet_id, vet_id, date_time_start, time_start, time_end, time, reason, setVets}) {
     const [showModal, setShowModal] = useState(false);
     const [apptTimeLength, setApptTimeLength] = useState(time);
     const [appointmentForm, setAppointmentForm] = useState({
@@ -12,7 +13,20 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
         time: time,
         date_time_start: date_time_start,
         time_start: time_start,
+        time_end: time_end
     })
+    
+    function getTodayDate(){
+        const today = new Date();
+        let year = today.getFullYear();
+        let date = today.getDate();
+        let month = today.getMonth() + 1;
+
+        if(date < 10){date = '0' + date}
+        if(month < 10){month = '0' + month}
+
+        return(year + '-' + month + '-' + date);
+    }
 
     function getDateTimeEnd(start){
         let timeArr = start.split(':');
@@ -47,11 +61,18 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
         })
         .then(r => r.json())
         .then((appt) => {
-            let apptObj = appointments.find(ap => ap.id == id);
+            let apptObj = appointments.find(ap => ap.id === id);
             let apptIndex = appointments.indexOf(apptObj);
             appointments[apptIndex] = appt;
-
             setAppointments([...appointments]);
+            
+            let vet = vets.find(vet => vet.id === appt.vet_id);
+            let vetInd = vets.indexOf(vet);
+            let allVets = [...vets];
+            let vetAppt = allVets[vetInd].appointments.find(apt => apt.id === id);
+            let vetApptInd = allVets[vetInd].appointments.indexOf(vetAppt);
+            allVets[vetInd].appointments[vetApptInd] = appt;
+            setVets([...allVets]);
         })
 
         setShowModal(false);
@@ -59,16 +80,16 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
 
     function handleChange(event) {
         const {value, name} = event.target;
-        if(name == 'vet_id' || name == 'pet_id'){
+        if(name === 'vet_id' || name === 'pet_id'){
             setAppointmentForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }));
         }
-        else if(name == 'reason'){
-            const time = apptData.find(appt => appt.name == value);
+        else if(name === 'reason'){
+            const time = apptData.find(appt => appt.name === value);
             setApptTimeLength(time.time);
             setAppointmentForm(prev => ({
-                ...prev, [name]: value
+                ...prev, [name]: value, 'time': time.time
             }));
         }
         else{
@@ -76,11 +97,18 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                 ...prev, [name]: value
             }));
         }
+
+        if(name === 'vet_id' || name === 'reason' || name === 'date_time_start'){
+            setAppointmentForm(prev => ({
+                ...prev, 'time_start': ''
+            }))
+        }
     }
 
     return(
         <div>
             <button className="card-button" onClick={() => setShowModal(true)}>Edit</button>
+            {showModal && 
             <div className={showModal ? "modal show" : "modal"}>
                 <div className="modal-content-container">
                     <div className="modal-content">
@@ -93,7 +121,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Pet:</label>
                             </div>
                             <div className="col">
-                                <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id">
+                                <select onChange={handleChange} value={appointmentForm.pet_id} name="pet_id" required>
                                 {pets.map((pet) => {
                                     return(<option key={pet.id} value={pet.id}>{pet.name}</option>)
                                 })}
@@ -105,9 +133,9 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Vet:</label>
                             </div>
                             <div className="col">
-                                <select onChange={handleChange} value={appointmentForm.vet_id} name="vet_id">
+                                <select onChange={handleChange} value={appointmentForm.vet_id} name="vet_id" required>
                                     {vets.map((vet) => {
-                                    return(<option key={vet.id} value={vet.id}>{vet.name}</option>)
+                                        return(<option key={vet.id} value={vet.id}>{vet.name}</option>)
                                     })}
                                 </select>
                             </div>
@@ -118,7 +146,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Reason:</label>
                             </div>
                             <div className="full-col">
-                                <select onChange={handleChange} value={appointmentForm.reason} name='reason'>
+                                <select onChange={handleChange} value={appointmentForm.reason} name='reason' required>
                                     <option value='Annual Physical Exam'>Annual Physical Exam</option>
                                     <option value='Dental Cleaning'>Dental Cleaning</option>
                                     <option value='Grooming'>Grooming</option>
@@ -136,7 +164,7 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Date:</label>
                             </div>
                             <div className="col">
-                                <input onChange={handleChange} type="date" name="date_time_start" value={appointmentForm.date_time_start}/>
+                                <input onChange={handleChange} id='myDate' type="date" name="date_time_start" value={appointmentForm.date_time_start} min={getTodayDate()} required/>
                             </div>
                         </div>
                         <div className="row right">
@@ -144,18 +172,20 @@ function EditAppointmentModal({id, vets, pets, appointments, setAppointments, pe
                                 <label>Time:</label>
                             </div>
                             <div className="col">
-                                <input onChange={handleChange} type="time" name="time_start" value={appointmentForm.time_start}/>
+                                <input onChange={handleChange} type="time" name="time_start" value={appointmentForm.time_start} list='avail' required/>
+                                <FormTimeValidator vets={vets} vet_id={appointmentForm.vet_id} date_time_start={appointmentForm.date_time_start} time={appointmentForm.time}/>
                             </div>
                         </div>
                         </div>
                     </form>
                     <div className="button-container">
                         <button className="card-button" onClick={handleSubmit}>Save</button>
-                        <DeleteAppointment id={id} setShowModal={setShowModal} setAppointments={setAppointments} appointments={appointments}/>
+                        <DeleteAppointment id={id} apt={apt} setShowModal={setShowModal} setAppointments={setAppointments} appointments={appointments} vets={vets} setVets={setVets}/>
                     </div>
                     </div>
                 </div>
             </div>
+}
         </div>
     )
 }

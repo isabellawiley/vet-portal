@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function EditOwnerModal({owner}){
+function EditOwnerModal({owner, setOwner}){
     const {id, fname, lname, email, password} = owner;
     const [showModal, setShowModal] = useState(false);
     const [ownerForm, setOwnerForm] = useState({
@@ -8,11 +8,9 @@ function EditOwnerModal({owner}){
         lname: lname,
         email: email
     })
-    // console.log('before:', ownerForm)
 
     function handleSubmit(event) {
         event.preventDefault();
-        // console.log(ownerForm)
 
         fetch(`http://localhost:8000/api/owners/${id}`, {
             method: 'PUT',
@@ -29,19 +27,13 @@ function EditOwnerModal({owner}){
         })
         .then(res => res.json())
         .then(owner => {
-            // console.log(owner)
-            setShowModal(false)
-            setOwnerForm({
-                fname: owner.fname,
-                lname: owner.lname,
-                email: owner.email
-            })
+            setOwner(owner);
+            setShowModal(false);
         })
     }
 
     function handleChange(event){
         const {value, name} = event.target;
-        // console.log('name: ', name, 'value:', value)
         setOwnerForm(prev => ({
             ...prev, [name]: value
         }))
@@ -51,12 +43,13 @@ function EditOwnerModal({owner}){
         <div>
             <button className="edit-owner card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? 'modal show' : 'modal'}>
+                <div className="modal-content-container">
                 <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
                     <h3 className="modal-title">Edit Owner Information</h3>
                     <form>
                         <div className="row-container">
-                            <div className="row left">
+                            <div className="row">
                                 <div className="col">
                                     <label>First Name: </label>
                                 </div>
@@ -64,7 +57,7 @@ function EditOwnerModal({owner}){
                                     <input onChange={handleChange} type='string' name='fname' value={ownerForm.fname}/>
                                 </div>
                             </div>
-                            <div className="row right">
+                            <div className="row">
                                 <div className="col">
                                     <label>Last Name: </label>
                                 </div>
@@ -74,7 +67,7 @@ function EditOwnerModal({owner}){
                             </div>
                         </div>
                         <div className="row-container">
-                            <div className="row left">
+                            <div className="row">
                                 <div className="col">
                                     <label>Email: </label>
                                 </div>
@@ -85,8 +78,9 @@ function EditOwnerModal({owner}){
                         </div>
                     </form>
                     <div className="button-container">
-                        <button className="edit card-button" onClick={handleSubmit}>Save</button>
+                        <button className="card-button" onClick={handleSubmit}>Save</button>
                     </div>
+                </div>
                 </div>
             </div>
         </div>

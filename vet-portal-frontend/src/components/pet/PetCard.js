@@ -1,7 +1,7 @@
 import '../../styling/pets.css'
 import EditPetModal from './EditPetModal';
 
-function PetCard({pet}) {
+function PetCard({pet, pets, setPets}) {
     const {name, species, breed, age, image} = pet;
     // console.log('image:',image)
 
@@ -22,7 +22,7 @@ function PetCard({pet}) {
                 <p><strong>Species: </strong>{species}</p>
                 <p><strong>Breed: </strong>{breed}</p>
                 <p><strong>Age: </strong>{age}</p>
-                <EditPetModal pet={pet}/>
+                <EditPetModal pet={pet} pets={pets} setPets={setPets}/>
             </div>
         </div>
     )

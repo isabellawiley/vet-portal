@@ -1,5 +1,5 @@
 
-function DeletePet({id, setShowModal}){
+function DeletePet({id, setShowModal, pets, setPets}){
 
     function handleDelete(){
         if(window.confirm('Delete pet?')){
@@ -9,7 +9,13 @@ function DeletePet({id, setShowModal}){
                     'Access-Control-Allow-Origin': '*'
                 }
             })
-            .then(setShowModal(false))
+            .then(data => {
+                const updatedPets = pets.filter(pet => {
+                    return pet.id !== id;
+                })
+                setPets(updatedPets);
+                setShowModal(false)
+            })
         }
     }
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import DeletePet from "./DeletePet";
 
 
-function EditPetModal({pet}){
+function EditPetModal({pet, pets, setPets}){
     const {name, image, species, breed, age} = pet;
     const [showModal, setShowModal] = useState(false);
     const [petImage, setPetImage] = useState(pet.image);
@@ -158,7 +158,7 @@ function EditPetModal({pet}){
                     </form>
                     <div className="button-container">
                         <button className="card-button" onClick={uploadImage}>Save</button>
-                        <DeletePet id={pet.id} setShowModal={setShowModal} />
+                        <DeletePet id={pet.id} setShowModal={setShowModal} pets={pets} setPets={setPets} />
                     </div>
                 </div>
                 </div>

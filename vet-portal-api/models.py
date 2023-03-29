@@ -1,4 +1,4 @@
-from config import db, ma
+from config import db, ma, bcrypt
 from marshmallow_sqlalchemy import fields
 from sqlalchemy.orm import backref
 
@@ -50,8 +50,8 @@ class Owner(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fname = db.Column(db.String(32), nullable=False)
     lname = db.Column(db.String(32), nullable=False)
-    email = db.Column(db.String(32), nullable=False, unique=True)
-    password = db.Column(db.String(32), nullable=False)
+    email = db.Column(db.String(32), nullable=False, index=True)
+    password_hash = db.Column(db.String(128))
     pets = db.relationship(
         Pet,
         backref="owner",
@@ -59,6 +59,12 @@ class Owner(db.Model):
         single_parent=True,
         order_by="desc(Pet.id)"
     )
+
+    def hash_password(self, password):
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def verify_password(self, password):
+        return self.check_password_hash(password, self.password_hash)
 
 class OwnerSchema(ma.SQLAlchemyAutoSchema):
     class Meta:

@@ -24,7 +24,7 @@ OWNERS_PETS = [
                         "vet": {
                             "name": "Dr. Rodriguez",
                             "image": "https://www.seekpng.com/png/detail/266-2666925_free-stock-medical-doctor-clipart-doctor-cartoon-girl.png",
-                            "bio": "i am a vet"
+                            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         },
                         "reason": "Annual Physical Exam"
                     },
@@ -44,7 +44,7 @@ OWNERS_PETS = [
                         "vet": {
                             "name": "Dr. Bob",
                             "image": "https://static.vecteezy.com/system/resources/previews/005/520/145/original/cartoon-drawing-of-a-doctor-vector.jpg",
-                            "bio": "i am a vet too"
+                            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         },
                         "reason": "Dental Cleaning"
                     }
@@ -80,7 +80,7 @@ OWNERS_PETS = [
                         "vet": {
                             "name": "Dr. Susan",
                             "image": "https://img.freepik.com/premium-vector/female-doctor-cartoon-character-white-background_1639-28810.jpg?w=2000",
-                            "bio": "i am a vet as well"
+                            "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                         },
                         "reason": "Nail Trim"
                     }
@@ -133,7 +133,8 @@ def get_data_from_table(model):
 def create_database(db):
     db.create_all()
     for data in OWNERS_PETS:
-        new_owner = Owner(fname=data.get("fname"), lname=data.get("lname"), email=data.get("email"), password=data.get("password"))
+        new_owner = Owner(fname=data.get("fname"), lname=data.get("lname"), email=data.get("email"))
+        new_owner.hash_password(data.get("password"))
         for pet in data.get("pets", []):
             new_pet = Pet(
                     name=pet["name"],

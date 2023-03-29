@@ -1,17 +1,27 @@
-from flask import make_response, abort
+from flask import make_response, abort, jsonify
 from config import db
-from models import Owner, owner_schema, owners_schema, pets_schema, appointments_schema
+from models import Owner, owner_schema, owners_schema
 
 def read_all():
     owners = Owner.query.all()
     return owners_schema.dump(owners)
 
 def create(owner):
-    new_owner = owner_schema.load(owner, session=db.session)
+    fname = owner['fname']
+    lname = owner['lname']
+    email = owner['email']
+    password = owner['password']
+
+    if email is None or password is None or fname is None or lname is None:
+        abort(400)
+    if Owner.query.filter_by(email = email).first() is not None:
+        abort(400)
+
+    new_owner = Owner(email=email, fname=fname, lname=lname)
+    new_owner.hash_password(password)
     db.session.add(new_owner)
     db.session.commit()
-
-    return owner_schema.dump(new_owner), 201
+    return jsonify({'email': new_owner.email, 'fname': new_owner.fname, 'lname': new_owner.lname}), 201
 
 def read_one(owner_id):
     owner = Owner.query.get(owner_id)
@@ -68,3 +78,4 @@ def login(email, password):
     owner_obj = owner_schema.dump(owner)
     if password == owner_obj["password"]:
         return owner_obj
+    

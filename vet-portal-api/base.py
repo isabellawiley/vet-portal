@@ -1,16 +1,13 @@
-from flask import render_template
 import config
-from models import Owner, Pet, Vet, Appointment, owner_schema, owners_schema
-from flask_cors import CORS, cross_origin
+from config import bcrypt
+from models import Owner, Pet, Vet, Appointment, owners_schema
 import json
 from flask import request, jsonify
 from datetime import datetime, timedelta, timezone
-from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required
 
 app = config.connex_app
 app.add_api(config.basedir / "swagger.yml")
-# CORS(app.app)
-# CORS(app.app, resources={r"/api/*": {"origins": "*"}})
 app.app.config['CORS_HEADERS'] ='Content-Type'
 
 @app.app.after_request
@@ -36,9 +33,8 @@ def create_token():
     all_owners = Owner.query.all()
     filtered_owner = filter(lambda owner: owner["email"] == email, owners_schema.dump(all_owners))
     owner = list(filtered_owner)[0]
-    print(owner["email"]," ---&&---", email)
-    print(owner["password"]," ---&&---", password)
-    if email != owner["email"] or password != owner["password"]:
+    check_pw = bcrypt.check_password_hash(owner['password_hash'], password)
+    if email != owner["email"] or check_pw == False:
         return {"msg": "Wrong email or password"}, 401
     access_token = create_access_token(identity=email)
     response = {"access_token": access_token, "owner": owner}
@@ -52,7 +48,6 @@ def logout():
 
 @app.route('/')
 @jwt_required()
-# @cross_origin()
 def home():
     owners = Owner.query.all()
     pets = Pet.query.all()

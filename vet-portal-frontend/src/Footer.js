@@ -7,7 +7,7 @@ function Footer(){
             <div className="footer-info">
                 <div className="footer-column">
                     <img className="location" src='/location-icon.png' alt='location'/>
-                    <p>123 Somewhere Dr, Duloc</p>
+                    <p>123 Willow Brook Dr, Duloc</p>
                 </div>
                 <div className="footer-column">
                     <img className="phone" src='/phone-icon.png' alt='phone'/>
@@ -15,7 +15,7 @@ function Footer(){
                 </div>
                 <div className="footer-column">
                     <img className="clock" src='clock-icon.png' alt='clock'/>
-                    <p>9am-6pm, Monday-Saturday</p>
+                    <p>9am-6pm, Sunday-Saturday</p>
                 </div>
             </div>
             <div className="icon-container">

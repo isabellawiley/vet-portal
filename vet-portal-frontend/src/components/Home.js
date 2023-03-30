@@ -27,7 +27,7 @@ function Home({}){
     return(
         <div>
             <div className='background'>
-                <h1>Welcome!</h1>
+                <h1>Welcome to Willow Brook Veterinary Hospital!</h1>
             </div>
             <div className='blurb reveal'>
                 <div className='blurb-text'>
@@ -41,9 +41,9 @@ function Home({}){
             <div className='contact reveal'>
                 <div className='blurb-text'>
                     <h2 className='blurb-title'>Contact Us</h2>
-                    <p>123 Somewhere Dr, Duloc</p>
-                    <p>555-555-5555</p>
-                    <p>9am-6pm, Monday-Saturday</p>
+                    <p><img className="location" src='/location-icon.png' alt='location'/>123 Willow Brook Dr, Duloc</p>
+                    <p><img className="phone" src='/phone-icon.png' alt='phone'/>555-555-5555</p>
+                    <p><img className="clock" src='clock-icon.png' alt='clock'/>9am-6pm, Sunday-Saturday</p>
                 </div>
                 <div className='blurb-image'>
                     <img src={image2} alt='vet2'/>

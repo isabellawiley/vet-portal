@@ -5,6 +5,8 @@ import json
 from flask import request, jsonify
 from datetime import datetime, timedelta, timezone
 from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, unset_jwt_cookies, jwt_required
+from flask.helpers import send_from_directory
+from flask_cors import cross_origin
 
 app = config.connex_app
 app.add_api(config.basedir / "swagger.yml")
@@ -46,20 +48,25 @@ def logout():
     unset_jwt_cookies(response)
     return response
 
+# @app.route('/')
+# @jwt_required()
+# def home():
+#     owners = Owner.query.all()
+#     pets = Pet.query.all()
+#     vets = Vet.query.all()
+#     appointments = Appointment.query.all()
+#     response_body = {
+#         "owners": owners,
+#         "pets": pets,
+#         "vets": vets,
+#         "appointments": appointments
+#     }
+#     return jsonify(response_body)
+
 @app.route('/')
-@jwt_required()
-def home():
-    owners = Owner.query.all()
-    pets = Pet.query.all()
-    vets = Vet.query.all()
-    appointments = Appointment.query.all()
-    response_body = {
-        "owners": owners,
-        "pets": pets,
-        "vets": vets,
-        "appointments": appointments
-    }
-    return jsonify(response_body)
+@cross_origin()
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=False)

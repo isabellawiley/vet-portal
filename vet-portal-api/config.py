@@ -10,9 +10,10 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 
 basedir = pathlib.Path(__file__).parent.resolve()
-connex_app = connexion.App(__name__, specification_dir=basedir, static_folder='vet-portal-frontend/build')
+connex_app = connexion.App(__name__, specification_dir=basedir,static_folder='vet-portal-frontend/build', static_url_path='',)
 
 app = connex_app.app
+# app.static_folder = 'vet-portal-frontend/build'
 bcrypt = Bcrypt(app)
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'

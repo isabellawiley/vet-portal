@@ -3,7 +3,7 @@ function DeleteAppointment({ apt, setShowModal, appointments, setAppointments, v
 
     function handleDelete(){
         if(window.confirm("Delete appointment?")){
-            fetch(`http://localhost:8000/api/appointments/${apt.id}`, {
+            fetch(`https://pet-portal.herokuapp.com/api/appointments/${apt.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*'

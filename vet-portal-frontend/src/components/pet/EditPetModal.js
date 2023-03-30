@@ -44,7 +44,7 @@ function EditPetModal({pet, pets, setPets}){
         event.preventDefault();
         // console.log(petForm)
 
-        fetch(`http://localhost:8000/api/pets/${pet.id}`, {
+        fetch(`https://pet-portal.herokuapp.com/api/pets/${pet.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

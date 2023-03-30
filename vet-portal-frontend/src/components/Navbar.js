@@ -8,7 +8,7 @@ function Navbar({removeToken, setOwner, owner, setPets, setAppointments}){
     const navigate = useNavigate();
 
     function logout(){
-        fetch("http://localhost:8000/logout", {
+        fetch("https://pet-portal.herokuapp.com/logout", {
             method: "POST",
         })
         .then(r => r.json())

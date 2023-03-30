@@ -11,7 +11,7 @@ function Login({setToken, setOwner, navigate, setPets, setAppointments}){
     function handleLogin(event){
         event.preventDefault();
 
-        fetch("http://localhost:8000/token", {
+        fetch("https://pet-portal.herokuapp.com/token", {
             method: "POST",
             headers: {
                 'Authorization': 'Bearer access_token',
@@ -34,7 +34,7 @@ function Login({setToken, setOwner, navigate, setPets, setAppointments}){
                 setPets(data.owner.pets);
                 localStorage.setItem('user', JSON.stringify(data.owner));
                 // console.log(data.owner)
-                fetch(`http://localhost:8000/api/owners/${data.owner.id}/appointments`)
+                fetch(`https://pet-portal.herokuapp.com/api/owners/${data.owner.id}/appointments`)
                 .then(res => res.json())
                 .then(data => {
                     setAppointments(data);

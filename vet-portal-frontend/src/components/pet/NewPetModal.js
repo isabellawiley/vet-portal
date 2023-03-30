@@ -29,7 +29,7 @@ function NewPetModal({owner_id, pets, setPets}){
     function handleSubmit(event, imgUrl){
         event.preventDefault();
 
-        fetch('http://localhost:8000/api/pets', {
+        fetch('https://pet-portal.herokuapp.com/api/pets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

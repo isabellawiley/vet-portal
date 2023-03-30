@@ -10,7 +10,7 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 
 basedir = pathlib.Path(__file__).parent.resolve()
-connex_app = connexion.App(__name__, specification_dir=basedir)
+connex_app = connexion.App(__name__, specification_dir=basedir, static_folder='vet-portal-frontend/build')
 
 app = connex_app.app
 bcrypt = Bcrypt(app)

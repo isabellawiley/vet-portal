@@ -25,21 +25,21 @@ function App() {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = (localStorage.getItem("token"));
     if(user && token){
-      fetch(`http://localhost:8000/api/owners/${user.id}`)
+      fetch(`https://pet-portal.herokuapp.com/api/owners/${user.id}`)
       .then(res => res.json())
       .then(owner => {
         setOwner(owner);
         setPets(owner.pets);
         setToken(token)
       })
-      fetch(`http://localhost:8000/api/owners/${user.id}/appointments`)
+      fetch(`https://pet-portal.herokuapp.com/api/owners/${user.id}/appointments`)
         .then(res => res.json())
         .then(data => setAppointments(data))
       }
       else {
         navigate('/')
       }
-      fetch('http://localhost:8000/api/vets')
+      fetch('https://pet-portal.herokuapp.com/api/vets')
         .then(res => res.json())
         .then(data => setVets(data))
     

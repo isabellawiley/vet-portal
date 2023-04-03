@@ -4,7 +4,7 @@ function VetCard({vet}) {
     const {id, name, bio, image} = vet
 
     return(
-        <div className={id %2 == 0 ? "vet-card reverse": id==1 ? "vet-card first-slide" : "vet-card"}>
+        <div className={id %2 === 0 ? "vet-card reverse": id===1 ? "vet-card first-slide" : "vet-card"}>
             <div className="vet-image">
                 <img src={image} alt="vet photo"/>
             </div>

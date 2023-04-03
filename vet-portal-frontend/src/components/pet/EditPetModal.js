@@ -20,7 +20,6 @@ function EditPetModal({pet, pets, setPets}){
             const data = new FormData();
             data.append('file', petForm.image);
             data.append('upload_preset' , 'vet-portal');
-            // console.log('data',data);
     
             const res = await fetch("https://api.cloudinary.com/v1_1/ddr8azah3/image/upload", {
                 method: "POST",
@@ -28,7 +27,6 @@ function EditPetModal({pet, pets, setPets}){
             })
     
             const file = await res.json();
-            // console.log('file',file);
     
             let imgUrl = file.secure_url;
             handleSubmit(e, imgUrl);
@@ -42,9 +40,8 @@ function EditPetModal({pet, pets, setPets}){
 
     function handleSubmit(event, imgUrl){
         event.preventDefault();
-        // console.log(petForm)
 
-        fetch(`https://pet-portal.herokuapp.com/api/pets/${pet.id}`, {
+        fetch(`https://pet-portal-api.herokuapp.com/api/pets/${pet.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,14 +57,13 @@ function EditPetModal({pet, pets, setPets}){
         })
         .then(res => res.json())
         .then(pet => {
-            // console.log(pet)
             setShowModal(false)
         })
     }
 
     function handleChange(event){
         const {value, name} = event.target;
-        if(name == "age"){
+        if(name === "age"){
             setPetForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }))
@@ -85,8 +81,6 @@ function EditPetModal({pet, pets, setPets}){
             ...prev, [name]: files[0]
         }))
         setPetImage(URL.createObjectURL(event.target.files[0]));
-        // console.log(petForm)
-        // console.log(petImage);
         setImageChange(true);
     }
 

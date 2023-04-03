@@ -12,7 +12,7 @@ function Signup({setToken, setOwner, navigate}) {
     function handleSignup(event){
         event.preventDefault();
 
-        fetch("https://pet-portal.herokuapp.com/api/owners", {
+        fetch("https://pet-portal-api.herokuapp.com/api/owners", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function Signup({setToken, setOwner, navigate}) {
             }
         })
         .then(owner => {
-            fetch("https://pet-portal.herokuapp.com/token", {
+            fetch("https://pet-portal-api.herokuapp.com/token", {
                 method: "POST",
                 headers: {
                     'Authorization': 'Bearer access_token',

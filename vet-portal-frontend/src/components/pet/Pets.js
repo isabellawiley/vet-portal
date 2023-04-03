@@ -3,7 +3,7 @@ import PetCard from "./PetCard";
 
 function Pets({pets, owner, setPets}) {
     let {id} = owner;
-    // console.log(pets)
+    
     return(
         <div className="page-container">
             <h1 className="center">My Pets</h1>

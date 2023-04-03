@@ -29,7 +29,7 @@ function NewPetModal({owner_id, pets, setPets}){
     function handleSubmit(event, imgUrl){
         event.preventDefault();
 
-        fetch('https://pet-portal.herokuapp.com/api/pets', {
+        fetch('https://pet-portal-api.herokuapp.com/api/pets', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function NewPetModal({owner_id, pets, setPets}){
         })
         .then(res => res.json())
         .then(newPet => {
-            setPets(...pets, newPet);
+            setPets([newPet, ...pets]);
         })
 
         setPetForm({
@@ -62,7 +62,7 @@ function NewPetModal({owner_id, pets, setPets}){
 
     function handleChange(event){
         const {value, name} = event.target;
-        if(name == "age"){
+        if(name === "age"){
             setPetForm(prev => ({
                 ...prev, [name]: parseInt(value)
             }))

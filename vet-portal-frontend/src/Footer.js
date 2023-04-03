@@ -19,7 +19,7 @@ function Footer(){
                 </div>
             </div>
             <div className="icon-container">
-                <a href='https://www.linkedin.com/in/isabella-wiley/'>
+                <a href='https://www.linkedin.com/in/isabella-wiley/' target="_blank" rel='noreferrer'>
                     <img className="icon" src='/linkedin-icon.png' alt='linkedin'/>
                 </a>
             </div>

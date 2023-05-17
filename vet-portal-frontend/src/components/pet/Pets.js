@@ -5,7 +5,7 @@ function Pets({pets, owner, setPets}) {
     let {id} = owner;
     
     return(
-        <div className="page-container">
+        <div>
             <h1 className="center">My Pets</h1>
             <NewPetModal owner_id={id} pets={pets} setPets={setPets}/>
             {pets ? 

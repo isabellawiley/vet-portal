@@ -29,7 +29,7 @@ li {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.473);
-    height: 13em;
+    height: auto;
     width: 10.5em;
 }
 
@@ -187,4 +187,21 @@ label {
     width: 250px;
     object-fit: cover;
     margin: 8% auto 5% 13%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .apt-container li {
+        width: 100%;
+    }
+
+    .apt-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }

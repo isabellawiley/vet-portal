@@ -9,9 +9,9 @@ function AppointmentCard({apt, id, date_time_start, date_time_end, time, pet, pe
 
     
     return(
-        <div>
+        <div className="apt-card">
             {id && date_time_start && pet && pets && vet && vets && appointments && reason ? 
-                <div className="apt-card">
+                <div>
                     <h3>{pet.name}</h3>
                     <p>{reason}</p>
                     <p>{strDate[0]} {timeStr}</p>

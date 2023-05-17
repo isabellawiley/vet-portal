@@ -117,6 +117,14 @@ input[type=checkbox]{
 }
 
 @media (max-width: 768px) {
+    .hamburger, .change {
+        display: block;
+    }
+    
+    input[type=checkbox]:checked ~ .menu {
+        display: block;
+    }
+    
     .menu {
         display: none;
         position: absolute;
@@ -124,34 +132,27 @@ input[type=checkbox]{
         left: 0;
         text-align: center;
         padding: 16px 0;
-    }
-
-    input[type=checkbox]:checked ~ .menu {
-        display: block;
-    }
-
-    .hamburger, .change {
-        display: block;
-    }
-
-    .menu {
-        display: none;
-        /* visibility: hidden; */
-        opacity: 0;
-        transition: opacity 0.5s linear;
+        font-size: 1.5rem;
+        /* opacity: 0;
+        transition: opacity 0.5s linear; */
     }
 
     .menu.expanded {
         display: block;
         position: absolute;
-        top: 60px;
+        /* top: 60px; */
         background-color: rgb(102, 135, 197);
+        transform: translateY(60%);
+        height: 40vh;
+        box-shadow: 0 5px 5px -5px black;
         /* visibility: visible; */
-        opacity: 1;
+        /* opacity: 1; */
     }
 
     .menu.expanded li {
         background-color: rgb(102, 135, 197);
+        border-color: rgb(102, 135, 197);
+        margin: 3%;
     }
 
     .nav-right {

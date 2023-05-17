@@ -1,0 +1,225 @@
+.background {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/background-img-3.png');
+    height: 400px;
+    width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .background h1 {
+    color: white;
+    margin: 0;
+    align-self: center;
+    text-align: center;
+  }
+  
+  .blurb.reveal, .contact.reveal {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+  }
+  
+  .blurb.reveal.active, .contact.reveal.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .blurb, .contact {
+    display: flex;
+    margin: 5%;
+    gap: 2rem;
+  }
+  
+  .blurb-text {
+    flex-basis: 50%;
+    padding: 5px;
+    margin: auto;
+  }
+  
+  .blurb-title {
+    text-align: center;
+    font-size: 30px;
+  }
+  
+  .blurb-image {
+    flex-basis: 50%;
+    padding: 5px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .blurb-image img {
+    object-fit: cover;
+    width: 390px;
+    height: 300px;
+  }
+  
+  .contact {
+    flex-direction: row-reverse;
+  }
+  
+  .contact .blurb-text {
+    text-align: center;
+  }
+  
+  /* Flip Card */
+  
+  .services {
+    margin: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .flip-card {
+    background-color: transparent;
+    width: 280px;
+    height: 200px;
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  /* .flip-card-inner img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  } */
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateX(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  .flip-card-back {
+    box-sizing: border-box;
+    background-color: rgb(73, 96, 139);
+    color: white;
+    transform: rotateX(180deg);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+  }
+  
+  .flip-card-front-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .flip-card-img {
+    height: 100%;
+    width: auto;
+  }
+  
+  .flip-card-front-container:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(158, 89, 33, 0.6);
+  }
+  
+  .flip-card-title-container {
+    width: 90%;
+    margin: 0;
+    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+  }
+  
+  .flip-card-title {
+    color: white;
+    text-shadow: 0.1em 0.1em 0.5em rgba(0,0,0,0.5);
+    font-size: 25px;
+  }
+  
+  @media (max-width: 768px) {
+    .blurb, .contact {
+      display: flex;
+      flex-direction: column;
+      margin: 5%;
+      gap: 2rem;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  
+    .blurb-title {
+      font-size: 2.5rem;
+    }
+  
+    .blurb-image {
+      width: 90%;
+    }
+  
+    .blurb-image img{
+      width: 100%;
+      height: 20rem;
+    }
+  
+    .services {
+      margin-bottom: 5%;
+    }
+  
+    .flip-card {
+      background-color: transparent;
+      width: 90%;
+      height: 18rem;
+      perspective: 1000px;
+    }
+  
+    .flip-card-title {
+      font-size: 2rem;
+    }
+  
+    .flip-card.active .flip-card-inner {
+      transform: rotateX(180deg);
+    }
+  
+    .flip-card-back {
+      font-size: 1.5rem;
+    }
+  }

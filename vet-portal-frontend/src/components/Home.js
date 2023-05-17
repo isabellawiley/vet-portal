@@ -2,8 +2,9 @@ import image1 from '../images/vet-portal-img.jpg';
 import image2 from '../images/vet-portal-img2.jpg';
 import allServices from '../assets/servicesData.json';
 import { Outlet } from 'react-router-dom';
+import "../styling/home.css";
 
-function Home({}){
+function Home(){
 
     function reveal(){
         let reveals = document.querySelectorAll(".reveal");
@@ -22,7 +23,25 @@ function Home({}){
         }
     }
 
+    function flipService(){
+        let reveals = document.querySelectorAll(".flip-card");
+
+        for(let i=0; i< reveals.length; i++){
+            let windowHeight = window.innerHeight;
+            let elementTop = reveals[i].getBoundingClientRect().top;
+            let elementVisible = 300;
+
+            if(elementTop < windowHeight - elementVisible){
+                reveals[i].classList.add("active");
+            }
+            else{
+                reveals[i].classList.remove("active");
+            }
+        }
+    }
+
     window.addEventListener("scroll", reveal);
+    window.addEventListener("scroll", flipService);
 
     return(
         <div>
@@ -49,7 +68,7 @@ function Home({}){
                     <img src={image2} alt='vet2'/>
                 </div>
             </div>
-            <div className='services reveal'>
+            <div className='services'>
                 <h2 className='blurb-title'>Our Services</h2>
                 <div className='service-cards'>
                     {allServices.map((service) => {
@@ -59,7 +78,9 @@ function Home({}){
                                     <div className='flip-card-front' >
                                         <div className='flip-card-front-container'>
                                             <img className='flip-card-img' src={service.image} alt='cat'/>
-                                            <h3 className='flip-card-title'>{service.title}</h3>
+                                            <div className='flip-card-title-container'>
+                                                <h3 className='flip-card-title'>{service.title}</h3>
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='flip-card-back'>

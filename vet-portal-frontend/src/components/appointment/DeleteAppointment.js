@@ -31,7 +31,7 @@ function DeleteAppointment({ apt, setShowModal, appointments, setAppointments, v
 
     return(
         <div>
-            <button className="delete-button" onClick={handleDelete}>Delete Appointment</button>
+            <button className="delete-button" onClick={handleDelete}>Delete</button>
         </div>
     )
 }

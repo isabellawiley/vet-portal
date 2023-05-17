@@ -113,6 +113,7 @@ function EditAppointmentModal({apt, id, vets, pets, appointments, setAppointment
                 <div className="modal-content-container">
                     <div className="modal-content">
                     <span className="close" onClick={() => (setShowModal(false))}>&times;</span>
+                    <br/>
                     <h3 className="modal-title">Edit Appointment</h3>
                     <form>
                         <div className="row-container">
@@ -172,7 +173,7 @@ function EditAppointmentModal({apt, id, vets, pets, appointments, setAppointment
                                 <label>Time:</label>
                             </div>
                             <div className="col">
-                                <input onChange={handleChange} type="time" name="time_start" value={appointmentForm.time_start} list='avail' required/>
+                                {/* <input onChange={handleChange} type="time" name="time_start" value={appointmentForm.time_start} list='avail' required/> */}
                                 <FormTimeValidator vets={vets} vet_id={appointmentForm.vet_id} date_time_start={appointmentForm.date_time_start} time={appointmentForm.time}/>
                             </div>
                         </div>

@@ -58,7 +58,7 @@ li {
     margin: auto;
     /* border: solid black; */
     width: 80%;
-    padding: 35px 25px;
+    padding: 10px 25px;
     border-radius: 25px;
     box-sizing: border-box;
     height: 80vh;
@@ -112,6 +112,11 @@ input[type=time], input[type=date], input[type=password], input[type=email], inp
     /* resize: vertical; */
     box-sizing: border-box;
     height: 45px;
+    font: inherit;
+}
+
+label {
+    font-size: 1.2rem;
 }
 
 input::file-selector-button{
@@ -203,5 +208,24 @@ label {
     .apt-card {
         width: 100%;
         box-sizing: border-box;
+    }
+
+    .close {
+        font-size: 2.5rem;
+        /* transform: translateY(-1rem); */
+        /* z-index: 2; */
+    }
+
+    .row-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+    .col, .full-col {
+        width: 100%;
     }
 }

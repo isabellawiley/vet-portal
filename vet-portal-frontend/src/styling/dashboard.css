@@ -191,6 +191,12 @@
     .dashboard-content {
         flex-direction: column;
         gap: 0;
+        width: 90%;
+        margin: auto;
+    }
+
+    .owner-card {
+        width: 80%;
     }
 
     .owner-card h3 {

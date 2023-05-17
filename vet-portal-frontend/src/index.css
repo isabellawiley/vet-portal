@@ -211,6 +211,7 @@ code {
     flex-direction: column;
     justify-content: center;
     bottom: auto;
+    margin-top: 3rem;
   }
 
   .footer-info {
@@ -243,6 +244,8 @@ code {
   }
 
   .button-container {
-    margin-top: 1.5rem;
+    margin: 1.5rem 0;
+    width: auto;
+    padding: 0;
   }
 }

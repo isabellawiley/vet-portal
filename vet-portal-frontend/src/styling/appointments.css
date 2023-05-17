@@ -61,7 +61,7 @@ li {
     padding: 10px 25px;
     border-radius: 25px;
     box-sizing: border-box;
-    height: 80vh;
+    max-height: 80vh;
     overflow: hidden;
 }
 
@@ -208,6 +208,15 @@ label {
     .apt-card {
         width: 100%;
         box-sizing: border-box;
+        padding: 2rem 1rem;
+    }
+
+    .apt-card > div > h3 {
+        margin-top: 0;
+    }
+
+    .modal-content-container {
+        padding-top: 1.5rem;
     }
 
     .close {
@@ -218,6 +227,7 @@ label {
 
     .modal-title {
         margin-top: 0;
+        line-height: normal;
     }
 
     .modal-content {
@@ -235,6 +245,7 @@ label {
     .row-container {
         display: flex;
         flex-direction: column;
+        width: 100%;
     }
 
     .row {

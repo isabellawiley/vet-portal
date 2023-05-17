@@ -44,9 +44,10 @@ function EditOwnerModal({owner, setOwner}){
             <button className="edit-owner card-button" onClick={() => setShowModal(true)}>Edit</button>
             <div className={showModal ? 'modal show' : 'modal'}>
                 <div className="modal-content-container">
-                <div className="modal-content">
                     <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-                    <h3 className="modal-title">Edit Owner Information</h3>
+                    <br/>
+                    <h2 className="modal-title">Edit Owner Information</h2>
+                <div className="modal-content">
                     <form>
                         <div className="row-container">
                             <div className="row">

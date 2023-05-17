@@ -9,7 +9,7 @@ function Pets({pets, owner, setPets}) {
             <h1 className="center">My Pets</h1>
             <NewPetModal owner_id={id} pets={pets} setPets={setPets}/>
             {pets ? 
-            <div id='pets' className="content-container">{pets.map((pet) => {
+            <div id='pets'>{pets.map((pet) => {
                 return(<li key={pet.id}><PetCard pet={pet} pets={pets} setPets={setPets}/></li>);
             })}</div>
             :

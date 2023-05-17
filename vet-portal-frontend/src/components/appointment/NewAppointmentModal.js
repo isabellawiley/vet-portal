@@ -115,7 +115,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments, setVets
 
     return(
         <div>
-            <button className="card-button" onClick={() => setShowNewModal(true)}>New Appointment</button>
+            <button className="card-button new" onClick={() => setShowNewModal(true)}>New Appointment</button>
             <div className={showNewModal ? "modal show" : "modal"}>
                 <div className="modal-content-container">
                 <div className="modal-content">

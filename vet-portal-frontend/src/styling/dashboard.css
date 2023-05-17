@@ -2,7 +2,7 @@
 
 .dashboard-content {
     display: flex;
-    gap: 10rem;
+    gap: 5%;
     justify-content: center;
 }
 /* 
@@ -195,12 +195,12 @@
         margin: auto;
     }
 
-    .owner-card {
-        width: 80%;
-    }
-
     .owner-card h3 {
         font-size: 1.5rem;
+    }
+
+    .edit-owner.card-button {
+        left: 78%;
     }
 
     .content-title {

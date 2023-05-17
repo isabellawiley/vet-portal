@@ -118,10 +118,10 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments, setVets
             <button className="card-button new" onClick={() => setShowNewModal(true)}>New Appointment</button>
             <div className={showNewModal ? "modal show" : "modal"}>
                 <div className="modal-content-container">
-                <div className="modal-content">
                     <span className="close" onClick={() => setShowNewModal(false)}>&times;</span>
                     <br/>
                     <h3 className="modal-title">New Appointment</h3>
+                <div className="modal-content">
                     <form>
                         <div className="row-container">
                         <div className="row left">

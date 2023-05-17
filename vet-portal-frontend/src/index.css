@@ -89,7 +89,6 @@ code {
 
 .card-button {
   border: none;
-  /* background-color: rgb(73, 96, 139); */
   background-color: rgb(102, 135, 197);
   font-size: 15px;
   padding: 8px 15px;
@@ -192,20 +191,9 @@ code {
   }
 
   .new {
-    /* margin-left: 5%; */
     margin: auto;
     display: block;
   }
-
-  /* .card-button {
-    border: none;
-    background-color: rgb(102, 135, 197);
-    font-size: 1.5rem;
-    padding: 8px 15px;
-    border-radius: 12px;
-    transition-duration: 0.4s;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.473);
-  } */
 
   .card-button, .delete-button {
     font-size: 1.5rem;
@@ -222,7 +210,6 @@ code {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     bottom: auto;
   }
 
@@ -259,36 +246,3 @@ code {
     margin-top: 1.5rem;
   }
 }
-
-
-/* 
-.footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgb(102, 135, 197);
-  height: 16vh;
-  display: grid;
-  grid-template-areas: 'info info icons';
-  grid-template-columns: [info] 30% [info] 40% [icons] 30%;
-  box-shadow: 0 0 3px 0 black;
-}
-
-.footer-info {
-  grid-area: info;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  grid-column-start: 2;
-  justify-content: center;
-}
-
-.footer-column{
-  display: flex;
-  align-items: center;
-}
-
-.footer-column p {
-  margin: 0;
-} */

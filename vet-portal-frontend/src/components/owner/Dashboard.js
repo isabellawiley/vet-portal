@@ -14,7 +14,7 @@ function Dashboard({owner, setOwner, pets, appointments, vets}) {
     });
 
     return(
-        <div className="page-container">
+        <div>
             <h1 className="center">Dashboard</h1>
             <div className="dashboard-content">
                 <div className="dashboard-left">

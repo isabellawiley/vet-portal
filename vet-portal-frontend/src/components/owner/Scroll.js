@@ -8,13 +8,13 @@ function Scroll({pets, appts, vets}){
         <div>
             {pets && appts && vets ? 
                 <div className="scroll-container">
-                    <a className="content-title links" href="my-appointments"><h2>Upcoming Appointments</h2></a>
+                    <a className="links" href="my-appointments"><h2 className="content-title">Upcoming Appointments</h2></a>
                     <ul className="appt-scroll-cards">
                         {appts.map((appt) => {
                             return(<li className="appt-scroll-card" key={appt.id}><ApptScrollCard appt={appt} pets={pets} vets={vets}/></li>)
                         })}
                     </ul>
-                    <a className="content-title links" href="my-pets"><h2>My Pets</h2></a>
+                    <a className="links" href="my-pets"><h2 className="content-title">My Pets</h2></a>
                     <ul className="pet-scroll-cards">
                         {pets.map((pet) => {
                             return(<li className="pet-scroll-card" key={pet.id}><PetScrollCard pet={pet} /></li>)

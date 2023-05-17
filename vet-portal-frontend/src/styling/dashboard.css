@@ -19,11 +19,7 @@
     color: rgb(73, 96, 139);
 }
 
-.content-title h2 {
-    color: rgb(73, 96, 139);
-}
-
-.content-title.links {
+.links {
     text-decoration: underline rgb(73, 96, 139);
 }
 
@@ -142,7 +138,7 @@
     text-align: center;
 }
 
-.pet-name h2 {
+.pet-name > * {
     margin: 0;
 }
 
@@ -189,4 +185,25 @@
 
 .appt-scroll-cards::-webkit-scrollbar-track {
     background-color: #edf2f4;
+}
+
+@media (max-width: 768px) {
+    .dashboard-content {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .owner-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .content-title {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .scroll-container {
+        width: 100%;
+        padding: 0;
+    }
 }

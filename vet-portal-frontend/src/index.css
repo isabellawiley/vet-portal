@@ -192,6 +192,19 @@ code {
   }
 
   .new {
-    margin-left: 5%;
+    /* margin-left: 5%; */
+    margin: auto;
+    display: block;
+  }
+
+  .card-button {
+    border: none;
+    /* background-color: rgb(73, 96, 139); */
+    background-color: rgb(102, 135, 197);
+    font-size: 1.5rem;
+    padding: 8px 15px;
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.473);
   }
 }

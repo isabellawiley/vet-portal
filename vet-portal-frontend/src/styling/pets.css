@@ -68,6 +68,20 @@
     }
 
     .pet-card {
-        /* width: 90%; */
+        flex-direction: column;
+        height: 28rem;
     }
+
+    .meta, .pet-details {
+        height: 50%;
+    }
+
+    .pet-details h1 {
+        font-size: 2.5rem;
+    }
+
+    .pet-details {
+        line-height: .8;
+    }
+
 }

@@ -19,6 +19,7 @@ function Navbar({removeToken, setOwner, owner, setPets, setAppointments}){
             setPets([]);
             localStorage.removeItem('user');
             navigate('/login')
+            setIsActive(!isActive)
         })
     }
 
@@ -35,19 +36,19 @@ function Navbar({removeToken, setOwner, owner, setPets, setAppointments}){
                 </div>
                 <ul className={isActive ? "menu expanded" : "menu"}>
                     <li>
-                        <Link to='/'>Home</Link>
+                        <Link to='/' onClick={() => setIsActive(!isActive)}>Home</Link>
                     </li>
                     <li>
-                        <Link to='/vets'>Vets</Link>
+                        <Link to='/vets' onClick={() => setIsActive(!isActive)}>Vets</Link>
                     </li>
                     <li>
-                        <Link to='/dashboard'>Dashboard</Link>
+                        <Link to='/dashboard' onClick={() => setIsActive(!isActive)}>Dashboard</Link>
                     </li>
                     <li>
-                        <Link to='/my-pets'>My Pets</Link>
+                        <Link to='/my-pets' onClick={() => setIsActive(!isActive)}>My Pets</Link>
                     </li>
                     <li>
-                        <Link to='/my-appointments'>My Appointments</Link>
+                        <Link to='/my-appointments' onClick={() => setIsActive(!isActive)}>My Appointments</Link>
                     </li>
                     <li className="nav-right">
                         {owner ? 

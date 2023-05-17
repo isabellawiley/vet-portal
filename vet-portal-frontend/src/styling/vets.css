@@ -66,3 +66,20 @@
 .vet-info h2 {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    .vet-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .vet-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .vet-image {
+        width: 100%;
+    }
+}

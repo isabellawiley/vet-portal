@@ -170,5 +170,16 @@ code {
   display: none;
 }
 
-/* Home */
+@media (max-width: 768px) {
+  p {
+    font-size: 1.5rem;
+  }
 
+  h2 {
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+}

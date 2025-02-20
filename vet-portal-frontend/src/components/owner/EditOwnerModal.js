@@ -12,7 +12,7 @@ function EditOwnerModal({owner, setOwner}){
     function handleSubmit(event) {
         event.preventDefault();
 
-        fetch(`https://pet-portal-api.herokuapp.com/api/owners/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/owners/${id}`, {
             method: 'PUT',
             headers: {
                 'Access-Control-Allow-Origin': '*',

@@ -3,7 +3,7 @@ function DeletePet({id, setShowModal, pets, setPets}){
 
     function handleDelete(){
         if(window.confirm('Delete pet?')){
-            fetch(`https://pet-portal-api.herokuapp.com/api/pets/${id}`, {
+            fetch(`${process.env.REACT_APP_API_URL}/api/pets/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*'

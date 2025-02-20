@@ -41,7 +41,7 @@ function EditPetModal({pet, pets, setPets}){
     function handleSubmit(event, imgUrl){
         event.preventDefault();
 
-        fetch(`https://pet-portal-api.herokuapp.com/api/pets/${pet.id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/pets/${pet.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

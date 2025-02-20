@@ -46,7 +46,7 @@ function NewAppointmentModal({appointments, pets, vets, setAppointments, setVets
     function handleSubmit(event){
         event.preventDefault();
 
-        fetch(`https://pet-portal-api.herokuapp.com/api/appointments`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/appointments`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

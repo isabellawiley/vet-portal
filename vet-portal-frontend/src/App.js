@@ -21,25 +21,26 @@ function App() {
   const navigate = useNavigate();
   const {token, removeToken, setToken} = useToken();
 
+  console.log(process.env.REACT_APP_API_URL);
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     const token = (localStorage.getItem("token"));
     if(user && token){
-      fetch(`https://pet-portal-api.herokuapp.com/api/owners/${user.id}`)
+      fetch(`${process.env.REACT_APP_API_URL}/api/owners/${user.id}`)
       .then(res => res.json())
       .then(owner => {
         setOwner(owner);
         setPets(owner.pets);
         setToken(token)
       })
-      fetch(`https://pet-portal-api.herokuapp.com/api/owners/${user.id}/appointments`)
+      fetch(`${process.env.REACT_APP_API_URL}/api/owners/${user.id}/appointments`)
         .then(res => res.json())
         .then(data => setAppointments(data))
       }
       else {
         navigate('/')
       }
-      fetch('https://pet-portal-api.herokuapp.com/api/vets')
+      fetch(`${process.env.REACT_APP_API_URL}/api/vets`)
         .then(res => res.json())
         .then(data => setVets(data))
     

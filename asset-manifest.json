@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/vet-portal-frontend/static/css/main.842bdd27.css",
+    "main.js": "/vet-portal-frontend/static/js/main.ca5c399f.js",
+    "static/js/787.6b79647c.chunk.js": "/vet-portal-frontend/static/js/787.6b79647c.chunk.js",
+    "static/media/vet-portal-img2.jpg": "/vet-portal-frontend/static/media/vet-portal-img2.31949dcf137356ade68f.jpg",
+    "static/media/background-img-3.png": "/vet-portal-frontend/static/media/background-img-3.e0042f8571a0165b2ae9.png",
+    "static/media/vet-portal-img.jpg": "/vet-portal-frontend/static/media/vet-portal-img.b48e0548af0843cfd5e5.jpg",
+    "index.html": "/vet-portal-frontend/index.html",
+    "main.842bdd27.css.map": "/vet-portal-frontend/static/css/main.842bdd27.css.map",
+    "main.ca5c399f.js.map": "/vet-portal-frontend/static/js/main.ca5c399f.js.map",
+    "787.6b79647c.chunk.js.map": "/vet-portal-frontend/static/js/787.6b79647c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.842bdd27.css",
+    "static/js/main.ca5c399f.js"
+  ]
+}
